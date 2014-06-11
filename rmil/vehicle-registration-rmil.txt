@@ -1,0 +1,13 @@
+# Vehicle Registration
+
+class VehicleRegistration Aggregation
+	Citizen registator 1 1
+	OrganisationUnit caseHandler 1 1	
+end
+	
+class RegistrationForm Record
+	VehicleRegistration registration 1 1 
+end	
+	
+class Citizen 
+end

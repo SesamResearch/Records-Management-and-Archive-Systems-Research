@@ -1,0 +1,164 @@
+# default prefix for moreq2010
+prefix http://data.sesam.io/moreq2010/
+prefix owl http://w3c.org/owl#
+	
+# Moreq2010 Record Service Data Model
+
+# Aggregation Data Model
+class Aggregation
+	xsd:dateTimw created 1 1
+	xsd:dateTime originated 1 1
+	xsd:dateTime first-used 0 1
+	xsd:dateTime last-addition 0 1
+	Class Class 1 1
+	xsd:string title 1 1
+	xsd:string description 0 1
+	xsd:string scope-notes 0 1
+	xsd:dateTime closed 0 1
+	xsd:dateTime destroyed 0 1
+	xsd:int max-levels-of-aggregation 0 1
+	Aggregation parent 0 1
+	xsd:dateTime aggregated 0 1
+	
+	# inverse property constraint
+	# Event ~event "select ?x where { ?x entity [[?this]] . ?x a Event }" 0 *
+	
+	# children 
+	# Entity ~children "select ?child where { ?child parent ?x . } " 0 *
+	
+	# todo
+	# DisposalHold			
+	# DisposalHold disposal-holds 0 *
+	# Event event 0 *
+	# acl (check how this is done) 
+	# contextual metadata (from a template or equivalent, see 7. Model Metadata Service).
+	# child entities (either aggregations or records),
+end
+	
+# Record Class Definition 
+class Record	
+	xsd:dateTime created
+	xsd:dateTime originated
+	xsd:string title
+	xsd:string description
+	Record duplicate 0 1
+	Aggregation parent  1 1
+	xsd:dateTime aggregated
+	Class Class 0 1 
+	DisposalSchedule disposalSchedule 0 1
+	xsd:dateTime retentionStart 0 1
+	DisposalAction disposalAction 1 1
+	xsd:dateTime disposalActionDue
+	xsd:dateTime disposalConfirmationDue
+	xsd:dateTime disposalOverdueAlert
+	xsd:string lastReviewComment
+	xsd:dateTime lastReviewed
+	xsd:dateTime transferred
+	xsd:dateTime destroyed
+	
+	# todo
+	#Each record also has:
+	#	• one or more components,
+	#	• disposal holds associated with the record (see 9. Disposal holding
+	#	service),
+	#	• an event history (see 2. System services),
+	#	• an access control list (or equivalent, see 4. Model role service),
+	#	and may have:
+	#	• contextual metadata (from a template or equivalent, see 7. Model
+	#	metadata service).	
+end
+		
+# DisposalAction Class Definition
+# Support class to be referenced from record 		
+class DisposalAction
+	xsd:int codeValue 1 1 
+end
+
+instance retain_on_hold DisposalAction
+	codeValue 0
+end
+	
+instance retain_permanently DisposalAction
+	codeValue 1
+end
+	
+instance review DisposalAction
+	codeValue 2
+end
+	
+instance transfer DisposalAction
+	codeValue 3
+end
+	
+instance destroy DisposalAction
+	codeValue 4
+end		
+
+# Component Class Definition
+class Component
+	xsd:dateTime created 1 1 
+	xsd:dateTime originated 1 1
+	Record parent 1 1
+	xsd:string title 1 1
+	xsd:string description 1 1
+	Component duplicate
+	xsd:boolean automaticDeletion
+	xsd:dateTime Destroyed
+end
+
+# todo
+#Each component also has:
+#* content (held in a content store),
+#• an event history,
+#and may have:
+#• contextual metadata (or equivalent, see 7. Model metadata service).
+
+# User and Group Service Data Model
+
+# Entity Class Definition
+class User
+	xsd:dateTime created
+	xsd:dateTime originated
+	xsd:dateTime firstUsed
+	Group group
+	xsd:string title
+	xsd:string description
+	xsd:dateTime destroyed
+end
+
+# Group Class Definition
+class Group
+	xsd:dateTime created
+	xsd:dateTime originated
+	xsd:dateTime firstUsed
+	xsd:string title
+	xsd:string description
+	xsd:dateTime destroyed
+end
+
+## Model Role Service
+class Function
+end
+
+class Role
+	xsd:dateTime created 1 1 	
+	xsd:dateTime originated 1 1 
+	xsd:dateTime firstUsed
+	xsd:boolean isAdministrativeRole 
+	xsd:string title
+	xsd:string description
+	xsd:string scopeNote
+	Function function 1 1 
+	xsd:dateTime destroyed
+end
+
+
+
+
+
+
+
+
+
+
+

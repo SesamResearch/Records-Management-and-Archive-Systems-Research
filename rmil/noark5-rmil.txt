@@ -1,0 +1,205 @@
+# This work is licensed under a Creative Commons Attribution 4.0 International License.
+# http://creativecommons.org/licenses/by/4.0/
+# NOARK5 as RDFCL
+# Author: Graham Moore
+# Contact: graham.moore@sesam.io
+
+# Default URI Prefix for Noark5
+prefix http://arkivverket.no/noark5/
+prefix owl http://w3c.org/owl#
+
+# Archive Structure
+# Utility Type
+class FondCreator
+	xsd:string title 1 1
+	xsd:string description 0 1 
+end
+
+# Definition for Class Fond
+class Fond
+	xsd:string title 1 1
+	xsd:string description 0 1
+	FondStatus status 1 1
+	xsd:string documentMedium 0 1
+	xsd:string storageLocation 0 * 
+	xsd:dateTime createDate 1 1
+	FondCreator createdBy 0 1
+	xsd:dateTime finalisedDate 1 1
+	OrganisationalUnit finalisedBy 0 1
+	Fond parent 0 1
+end
+	
+# Fond Status Class 
+class FondStatus
+end
+
+# Controlled Vocabulary for Fond Statuses
+instance Open FondStatus
+end
+
+instance Closed FondStatus
+end
+	
+# Property type mapping to Noark5
+# This is only done as example. 
+instance title
+	owl:sameAs M020
+end
+
+instance description
+	owl:sameAs M021
+end
+	
+# Definition for Class Series
+# Note: this abstraction seems really weird.
+# Used to create a time based criteria over a series of files.
+class Series
+	xsd:string title 1 1
+	xsd:string description 0 1
+	# M051 recordssectionstatus B One A Obligatory for case records.
+	# why are case handling specific things here?
+	xsd:string documentMedium 0 1 
+	xsd:string storageLocation 0 * 
+	xsd:dateTime createdDate 1 1
+	FondCreator createdBy 0 1 							  
+	xsd:dateTime finalisedDate 1 1
+	OrganisationalUnit finalisedBy 0 1
+	xsd:date periodStartDate 1 1
+	xsd:date periodEndDate 1 1
+	Fond parent 1 1
+	# M202 referencePrecursor B One A Obligatory for case records.
+	# M203 referenceSuccessor B One A Obligatory for case records.
+	Classification primaryClassification 1 1
+		
+	# Both the following are inverse properties
+	# Add a constraint that only allows one or other?
+	# M205 referenceFile O Many A Reference to all files in the series. Number of occurrences can therefore be high.
+	# M206 referenceRecord V Many A See remarks below.
+end
+
+# we use classification node as parent of class can be either another
+# class or a Classification System.
+class ClassificationNode
+end
+	
+class ClassificationSystem ClassificationNode
+	xsd:string classificationType 0 1
+	xsd:string title 1 1
+	xsd:string description 0 1
+	xsd:dateTime createdDate 1 1
+	FondCreator createdBy 0 1 							  
+	xsd:dateTime finalisedDate 1 1
+	OrganisationalUnit finalisedBy 0 1
+	# inverse property to top level classes.
+	# M201 referenceChild O Many A Reference to the uppermost level with classes.
+end
+
+class Keyword 
+	xsd:string title 1 1 	
+end
+	
+class Class ClassificationNode
+	# M002 classID O One A Corresponds to file code or order value in Noark 4. 
+	# classIDs at subordinate level inherit classID from the superior level. 
+	# use owl:sameas to map accross to Noark4 ids
+	xsd:string title 1 1
+	xsd:string description 0 1
+	xsd:dateTime createdDate 1 1
+	FondCreator createdBy 0 1
+	Keyword keyword 0 *
+	xsd:dateTime finalisedDate 1 1
+	OrganisationalUnit finalisedBy 0 1
+	ClassificationNode parent 0 1
+	# inverse property
+	# M201 referenceChild O Many Reference to file or to class at a lower level.
+end
+
+# Definition for Class File
+# A single instance of a process, such as a job application
+class File
+	xsd:string fileID 0 1
+	xsd:string filetype 0 1 
+	xsd:string title 0 1
+	xsd:string officialTitle 0 1 
+	xsd:string description 0 1
+	xsd:string documentMedium 0 1 
+	xsd:string storageLocation 0 * 
+	xsd:dateTime createdDate 1 1
+	FondCreator createdBy 0 1 
+	xsd:dateTime finalisedDate 1 1
+	OrganisationalUnit finalisedBy 0 1
+	File parentFile 0 1
+	# M208 referenceRecordssection what is this?
+end
+	
+# Definition for Class Record
+# A single record of evidence	
+class Record
+	xsd:string recordType 0 1
+	xsd:dateTime createdDate 1 1
+	FondCreator createdBy 0 1 
+	xsd:dateTime archivedDate 1 1
+	OrganisationUnit archivedBy 0 1
+	File parentFile 0 1
+	Series parentSeries 0 1	
+	# M208 referenceRecordssection V One A See remark 1 below.
+	# M207 referenceDocumentdescription B Many A Obligatory for electronic records 
+	# (electronic documents)
+	# M216 referenceDocumentobject V Many A See remark 2 below		
+end
+	
+# Basic Record
+# out of scope for now
+
+# Definition of Clas Document Description
+# Abstract notion of a logical document that may consist of
+# several physical documents. e.g. main document and appendix.
+class DocumentDescription	
+	xsd:string documentType 0 1 
+	xsd:string documentStatus 0 1 
+	xsd:string title 0 1
+	xsd:string description 0 1
+	xsd:string author 0 1 
+	xsd:dateTime createdDate 1 1
+	FondCreator createdBy 0 1 
+	xsd:string documentMedium 0 1
+	xsd:string storageLocation 0 1 
+	# inverse property of the document objects that comprise the 
+	# M216 referenceDocumentobject O Many
+end
+		
+# DocumentLink class connects Records to DocumentDescriptions
+class DocumentLink
+	Record record 1 1
+	xsd:string linkRole 0 1
+	DocumentDescription description 1 1
+	# er what is this for?
+	# M007 documentnumber O One Numbering of the documents within a record.
+	OrganisationUnit linkedBy	
+end
+
+class DocumentObject
+	xsd:integer versionNumber 0 1
+	xsd:string variantFormat 0 1
+	xsd:string format 0 1 
+	xsd:string formatDetails 0 1 
+	xsd:dateTime createdDate 1 1
+	FondCreator createdBy 0 1 
+	DocumentDescription documentDescription 0 1
+	Record record 0 1
+	# omg what??
+	# M218 referenceDocumentfile O One A The reference to the 
+	# document file‟s “path”, # i.e. file directory structure + file name. 
+	xsd:string checksum 1 1
+	xsd:string checksumAlgorithm 1 1
+	xsd:integer filesize 1 1
+end
+			
+# Having a type with this names smells bad.
+class PreservationAndDisposal
+	xsd:string disposalDecision 0 1
+	xsd:string disposalAuthority 0 1
+	xsd:datetime preservationTime 0 1
+	xsd:dateTime disposalDate 0 1
+end	
+	

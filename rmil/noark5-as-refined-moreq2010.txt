@@ -1,0 +1,28 @@
+## --------------------------------
+# NOAK5 
+# Subclass the appropriate structures in the moreq2010 model
+## --------------------------------
+
+prefix http://data.sesam.io/noark5/
+prefix moreq http://data.sesam.io/moreq2010
+
+class Fond Aggregation
+	Fond parent 0 1
+end
+	
+class Series Aggregation
+	Fond parent 1 1
+end
+	
+class File Aggregation
+	Series parent 1 1
+end
+
+class Record moreq:Record
+end
+
+class DocumentDescription
+end
+
+class DocumentObject
+end
