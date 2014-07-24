@@ -1,0 +1,479 @@
+
+prefix http://www.arkivverket.no/standarder/noark5/arkivstruktur/
+
+prefix cat http://www.arkivverket.no/standarder/noark5/metadatakatalog/
+prefix arkivstatus http://www.arkivvet.no/standarder/noark5/vokabular/arkivstatus/
+prefix arkivdelstatus http://www.arkivvet.no/standarder/noark5/vokabular/arkivdelstatus/
+prefix owl http://www.w3.org/owl
+
+
+http://www.example.org/myarkiv/arkiv/0019914918481841
+
+
+class Aggregation 
+end
+
+class Arkiv Aggregation
+	xsd:string systemID 1 1
+	xsd:string tittel 1 1
+	xsd:string beskrivelse 0 1
+	ArkivStatus arkivstatus 0 1
+	DokumentMedium dokumentmedium 0 1
+	xsd:string oppbevaringssted 0 *
+	xsd:dateTime opprettetDato 1 1
+	xsd:string opprettetAv 1 1
+	xsd:dateTime avsluttetDato 1 1 
+	xsd:string avslutterAv 0 1
+	ArkivSkarper arkivSkaper 1 1
+	Arkiv parent 0 1 
+end
+
+# also define a sameas that map sameas back to the spec
+
+# ArkivStatus is now a type with a vocabulary and not just string values.
+class ArkivStatus
+	xsd:string tittel 1 1	
+end
+
+instance arkivstatus:opprettet
+	tittel "Opprettet"
+end
+
+instance arkivstatus:avsluttet
+	tittel "Avsluttet"
+end
+
+#ArkivDelStatus is now a type with a vocabulary and not just string values
+class ArkivDelStatus
+	xsd:string tittel 1 1
+end
+
+
+class ArkivSkaper
+	xsd:string arkivskaperID 1 1
+	xsd:string arkivskaperNavn 1 1
+	xsd:string beskrivelse 0 1
+end
+
+class ArkivDel
+	xsd:string systemID 1 1
+	xsd:string tittel 1 1
+	xsd:string beskrivelse 0 1
+	ArkivDelStatus arkivdelstatus 0 1
+	DokumentMedium dokumentmedium 0 1
+	xsd:string oppbevaringssted 0 *
+	xsd:dateTime opprettetDato 1 1
+	xsd:string opprettetAv 1 1
+	xsd:dateTime avsluttetDato 1 1 
+	xsd:string avslutterAv 0 1
+	
+	xsd:dateTime arkivperiodeStartDato 0 1
+	xsd:dateTime arkivperiodeSluttDato 0 1
+	xsd:string referanseForloeper referanseForloeper 0 1
+    xsd:string referanseArvtaker 0 1
+	
+	Kassasjon kassasjon 0 1
+	UtfoertKassasjon utfoertKassasjon 0 1
+	Sletting sletting 0 1
+	Skerming skjerming 0 1
+	Gradering gradering 0 1		  
+
+# pointed to from klassifikasjonssystem
+#<xs:element name="klassifikasjonssystem" type="klassifikasjonssystem" minOccurs="0" maxOccurs="unbounded"/>
+
+# pointed to from mappe
+#<xs:element name="mappe" type="mappe" minOccurs="0" maxOccurs="unbounded"/>
+
+# pointed to from registrering
+#<xs:element name="registrering" type="registrering" minOccurs="0" maxOccurs="unbounded"/>
+
+	Arkiv parent 0 1 
+end
+
+class Klassifikasjonssystem
+	xsd:string systemID 0 1
+	# fixme
+	xsd:string klassifikasjonstype 0 1
+	xsd:string tittel 0 1
+	xsd:string beskrivelse 0 1
+	xsd:string opprettetDato 0 1
+	xsd:string opprettetAv 0 1
+	xsd:string avsluttetDato 0 1
+	xsd:string avsluttetAv 0 1
+
+	ArkivDel parent 1 *	  
+	
+	# proposal 
+	Klasse rootKlasse 0 *
+	
+    #  <xs:element name="klasse" type="klasse" maxOccurs="unbounded"/>
+end
+
+class Klasse
+	xsd:string systemID 1 1
+	xsd:string klasseID 1 1
+	xsd:string tittel 1 1
+	xsd:string beskrivelse 0 1
+	# ugly fixme for better reuse
+	xsd:string noekkelord 0 *
+	xsd:dateTime opprettetDato 1 1
+	xsd:dateTime opprettetAv 0 1
+	xsd:dateTime avsluttetDato 0 1
+	xsd:string avsluttetAv 0 1
+	
+	# not ideal fix me?
+	Kryssreferanse kryssreferanse 0 *
+	Kassasjon Kassasjon 0 1
+	Skjerming skjerming 0 1
+	Gradering gradering 0 1
+	
+	# parent, can be empty if this is root
+	# Could also introduce KlassifikasjonNode 
+	Klasse parent 0 1
+	
+	# hmm - this looks messy and so wrong
+	# <!-- Tillater klasser uten forekomster av (under)klasse, mappe og registering -->
+ 	# <xs:element name="klasse" type="klasse" minOccurs="0" maxOccurs="unbounded"/>
+	# <xs:element name="mappe" type="mappe" minOccurs="0" maxOccurs="unbounded"/>
+	# <xs:element name="registrering" type="registrering" minOccurs="0" maxOccurs="unbounded"/>
+end
+
+class Mappe
+	xsd:string systemID 1 1
+	xsd:string mappeID 1 1
+	xsd:string tittel 1 1
+	xsd:string offentligTittel 0 1
+	xsd:string beskrivelse 0 1
+	xsd:string noekkelord 0 1
+	DokumentMedium dokumentmedium 0 1
+	xsd:string oppbevaringssted 0 *
+	xsd:dateTime opprettetDato 0 *
+	xsd:string opprettetAv 1 1
+	xsd:dateTime avsluttetDato 1 1
+	xsd:string avsluttetAv 1 1
+	# is this just string?
+	xsd:string referanseArkivdel 0 *
+	
+	# hmmm. I think we just remove this and state that in general any other
+	# metadata can be included as just more RDF statements
+	# <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
+		  
+	# what about these? 	
+	Kryssreferanse kryssreferanse 0 *
+	Merknad merknad 0 *
+	Kassasjon kassasjon 0 1
+	Skjerming skjerming 0 1
+	Gradering gradering 0 1
+		 
+	# Klass reference
+	Klasse klasse 0 1
+	
+	# optional parent
+	Mappe parentMappe 0 1
+	
+	ArkivDel parentArkivDel 0 1
+
+	# 
+	# <!-- Tillater mapper uten forekomster av (under)mappe og registrering -->
+	# <xs:element name="mappe" type="mappe" minOccurs="0" maxOccurs="unbounded"/>
+	# <xs:element name="registrering" type="registrering" minOccurs="0" maxOccurs="unbounded"/>
+end
+
+class Registrering
+	xsd:string systemID 0 1
+	xsd:dateTime opprettetDato 1 1
+	xsd:string opprettetAv  1 1
+	xsd:dateTime arkivertDato 1 1
+	xsd:string arkivertAv 1 1
+	# fix me?
+	xsd:string referanseArkivdel 0 *
+
+	Kassasjon kassasjon 0 1
+	Skjerming skjerming 0 1
+	Gradering gradering 0 1
+	
+	Mappe parentMappe 0 1
+	ArkivDel parentArkivDel 0 1
+	
+	# fix me
+	# Tillater registreringer uten forekomster av dokumentbeskrivelse og dokumentobjekt -->
+	# <xs:element name="dokumentbeskrivelse" type="dokumentbeskrivelse" minOccurs="0" maxOccurs="unbounded"/>
+	# <xs:element name="dokumentobjekt" type="dokumentobjekt" minOccurs="0" maxOccurs="unbounded"/>
+end
+
+## domain extensions
+
+class Saksmappe Mappe
+	xsd:string saksaar 0 1
+	xsd:string sakssekvensnummer 0 1
+	xsd:dateTime saksdato 1 1
+	# This should be a proper thing
+	xsd:string administrativEnhet 1 1	
+	xsd:string saksansvarlig 1 1
+	xsd:string journalenhet 0 1
+	# fix me
+	xsd:string saksstatus 0 1
+	xsd:dateTime utlaantDato 0 1
+	xsd:string utlaantTil 0 1
+	# fix me
+	xsd:string referanseSekundaerKlassifikasjon 0 *
+	
+	Presedens presedens 0 *	
+
+	# reference in other direction
+	# <xs:element name="sakspart" type="sakspart" minOccurs="0" maxOccurs="unbounded"/>
+end
+
+
+class sakspart
+	xsd:string sakspartID 0 1
+	xsd:string sakspartNavn 0 1
+	xsd:string sakspartRolle 1 1
+	xsd:string postadresse 0 *
+	xsd:string postnummer 0 1
+	xsd:string poststed 0 1
+	xsd:string land 0 1
+	xsd:string epostadresse 0 1
+	xsd:string telefonnummer 0 *
+	xsd:string kontaktperson 0 *
+	
+	# must be part of a case
+	Saksmappe saksmappe 1 1
+	
+	# any rdf
+	# <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
+end
+
+class Moetemappe Mappe				
+	xsd:string moetenummer 1 1
+	xsd:string utvalg 1 1
+	xsd:dateTime moetedato
+	xsd:string moetested 0 1
+	xsd:string referanseForrigeMoete 0 1
+	xsd:string referanseNesteMoete 0 1
+	Moetedeltaker moetedeltaker 0 *
+end  
+  
+class Moetedeltaker
+	xsd:string moetedeltakerNavn 1 1
+	xsd:string moetedeltakerFunksjon 0 1
+end  
+  
+class Basisregistrering Registrering
+	xsd:string registreringsID  1 1
+	xsd:string tittel 1 1
+	xsd:string offentligTittel 0 1
+	xsd:string beskrivelse 0 1
+	xsd:string noekkelord 0 *
+	xsd:string forfatter 0 *
+	DokumentMedium dokumentmedium 0 1
+	xsd:string oppbevaringssted 0 *
+	
+	# any rdf.
+	# virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
+				  
+	Merknad merknad 0 *
+	Kryssreferanse kryssreferanse0 *
+end
+
+class Journalpost BasisRegistrering
+	xsd:string journalaar 0 1
+    xsd:string journalsekvensnummer 0 1
+    xsd:string journalpostnummer 0 1
+	# fixme
+    xsd:string journalposttype 1 1
+	# fix me
+	xsd:string journalstatus 1 1 
+    xsd:dateTime journaldato 1 1
+    xsd:dateTime dokumentetsDato 0 1
+    xsd:dateTime mottattDato 0 1
+    xsd:dateTime sendtDato 0 1
+    xsd:dateTime forfallsdato 0 1
+    xsd:dateTime offentlighetsvurdertDato 0 1
+    xsd:string antallVedlegg 0 1
+    xsd:dateTime utlaantDato 0 1
+    xsd:string utlaantTil 0 1
+    xsd:string journalenhet 0 1
+	
+	Avskrivning avskrivning 0 *
+	
+	Dokumentflyt dokumentflyt 0 *
+	Presedens presedens 0 *
+	ElektroniskSignatur elektroniskSignatur 0 1
+end
+    
+class Korrespondansepart
+	# fix me
+	xsd:string korrespondanseparttype 1 1
+	xsd:string korrespondansepartNavn 1 1
+    xsd:string postadresse 0 1
+	xsd:string postnummer 0 1
+    xsd:string poststed 0 1
+    xsd:string land 0 1
+    xsd:string epostadresse 0 1
+    xsd:string telefonnummer 0 1
+    xsd:string kontaktperson 0 1
+    xsd:string administrativEnhet 0 1
+    xsd:string saksbehandler 0 1
+	
+	JournalPost journalPost 1 1
+end  
+
+class Avskrivning
+	xsd:dateTime avskrivningsdato 1 1
+    xsd:string avskrevetAv 1 1
+    xsd:string avskrivningsmaate 1 1
+    xsd:string referanseAvskrivesAvJournalpost 0 1
+end  
+  
+class Dokumentflyt
+	xsd:string flytTil 1 1
+    xsd:string flytFra 1 1
+    xsd:dateTime flytMottattDato 1 1
+    xsd:dateTime flytSendtDato 1 1
+    xsd:string flytStatus 1 1
+    xsd:string flytMerknad 0 1	
+end
+
+class Moeteregistrering Basisregistrering
+	# fix me
+	xsd:string moeteregistreringstype 1 1
+	xsd:string moetesakstype 1 1
+	xsd:string moeteregistreringsstatus 0 1
+	xsd:string administrativEnhet 1 1
+	xsd:string saksbehandler
+	xsd:string referanseTilMoeteregistrering 0 *
+	xsd:string referanseFraMoeteregistrering 0 *
+end
+
+class Dokumentbeskrivelse
+	xsd:string systemID 1 1
+	# fix me
+	xsd:string dokumenttype 1 1
+	# fix me
+	xsd:string dokumentstatus 1 1
+	xsd:string tittel 1 1
+	xsd:string beskrivelse 0 1
+	xsd:string forfatter 0 *
+	xsd:dateTime opprettetDato 1 1
+	xsd:string opprettetAv 1 1
+	DokumentMedium dokumentmedium 0 1
+	xsd:string oppbevaringssted 0 1
+	xsd:string referanseArkivdel 0 *
+	xsd:string tilknyttetRegistreringSom 1 1 
+	xsd:string dokumentnummer 1 1
+	xsd:dateTime tilknyttetDato 1 1
+	xsd:string tilknyttetAv 1 1
+	
+	Registrering registrering 1 *
+		  
+	Merknad merknad 0 *
+	Kassasjon kassasjon 0 1
+	UtfoertKassasjon utfoertKassasjon 0 1
+	Sletting sletting 0 1
+	Skjerming skjerming 0 1
+	Gradering gradering 0 1
+	ElektroniskSignatur elektroniskSignatur 0 1		  
+end
+
+class Dokumentobjekt
+	xsd:string versjonsnummer 1 1
+	xsd:string variantformat 1 1
+	# fix me
+	xsd:string format 0 1
+	xsd:string formatDetaljer 0 1
+	xsd:dateTime opprettetDato 1 1
+	xsd:string opprettetAv 1 1
+	xsd:string referanseDokumentfil 1 1
+	xsd:string sjekksum 1 1
+	xsd:string sjekksumAlgoritme 1 1
+	xsd:string filstoerrelse 1 1
+	ElektroniskSignatur elektroniskSignatur 0 1
+
+    Konvertering konvertering 0 *
+	
+	DokumentBeskrivelse dokumentBeskrivelse 0 1
+	Registrering registrering 0 1	
+end  
+
+class Konvertering	
+	xsd:dateTime konvertertDato 1 1
+    xsd:string konvertertAv 1 1
+    xsd:string konvertertFraFormat 1 1
+    xsd:string konvertertTilFormat 1 1
+    xsd:string konverteringsverktoey 1 1
+    xsd:string konverteringskommentar 1 1      
+end  
+
+# this is messed up
+class Kryssreferanse
+    xsd:string referanseTilKlasse 0 1 
+    xsd:string referanseTilMappe 0 1
+    xsd:string referanseTilRegistrering 0 1
+end
+ 
+class Merknad
+    xsd:string merknadstekst 1 1
+    xsd:string merknadstype 1 1
+    xsd:string merknadsdato 1 1
+    xsd:string merknadRegistrertAv 1 1
+end
+
+class Kassasjon
+    xsd:string kassasjonsvedtak 1 1
+	xsd:string kassasjonshjemmel 0 1
+    xsd:string bevaringstid 1 1
+    xsd:dateTime kassasjonsdato 1 1
+end
+
+class UtfoertKassasjon
+	xsd:dateTime kassertDato 1 1
+	xsd:string kassertAv 1 1
+end
+
+class Sletting
+	# fix me
+	xsd:string slettingstype 1 1 
+	xsd:dateTime slettetDato 1 1
+	xsd:string slettetAv 1 1
+end
+
+class Skjerming
+	xsd:string tilgangsrestriksjon 1 1 
+    xsd:string skjermingshjemmel 1 1
+    xsd:string skjermingMetadata 0 *
+    xsd:string skjermingDokument 0 *
+    xsd:string skjermingsvarighet 0 1
+    xsd:string skjermingOpphoererDato 0 1
+end
+
+class Gradering
+	xsd:string gradering 1 1
+    xsd:dateTime graderingsdato 1 1
+    xsd:string gradertAv 1 1
+    xsd:dateTime nedgraderingsdato 0 1 
+    xsd:string nedgradertAv 0 1
+end
+
+class Presedens
+	xsd:dateTime presedensDato 1 1
+	xsd:dateTime opprettetDato 1 1
+	xsd:string opprettetAv 1 1
+	xsd:string tittel 1 1
+	xsd:string beskrivelse 0 1	
+	xsd:string presedensHjemmel 0 1
+	xsd:string rettskildefaktor 0 1
+	xsd:dateTime presedensGodkjentDato 0 1
+	xsd:string presedensGodkjentAv 0 1
+	xsd:dateTime avsluttetDato 0 1
+	xsd:string avsluttetAv 0 1
+	# fix me
+	xsd:string presedensStatus 0 1
+end
+
+class ElektroniskSignatur
+	xsd:string elektroniskSignaturSikkerhetsnivaa 1 1
+    xsd:string elektroniskSignaturVerifisert 1 1
+    xsd:dateTime verifisertDato 1 1
+    xsd:string verifisertAv 1 1
+end
