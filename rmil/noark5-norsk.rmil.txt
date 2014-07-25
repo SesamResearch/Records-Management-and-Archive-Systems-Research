@@ -344,8 +344,6 @@ class Arkiv Aggregation
 	Arkiv parent 0 1 
 end
 
-
-
 class ArkivSkaper
 	xsd:string arkivskaperID 1 1
 	xsd:string arkivskaperNavn 1 1
@@ -464,7 +462,7 @@ class Saksmappe Mappe
 	Presedens presedens 0 *	
 end
 
-class sakspart
+class Sakspart
 	xsd:string sakspartID 0 1
 	xsd:string sakspartNavn 0 1
 	xsd:string sakspartRolle 1 1
@@ -493,7 +491,7 @@ class Moetedeltaker
 	xsd:string moetedeltakerFunksjon 0 1
 end  
   
-class Basisregistrering Registrering
+class BasisRegistrering Registrering
 	xsd:string registreringsID  1 1
 	xsd:string tittel 1 1
 	xsd:string offentligTittel 0 1
@@ -506,7 +504,7 @@ class Basisregistrering Registrering
 	Kryssreferanse kryssreferanse 0 *
 end
 
-class Journalpost BasisRegistrering
+class JournalPost BasisRegistrering
 	xsd:string journalaar 0 1
     xsd:string journalsekvensnummer 0 1
     xsd:string journalpostnummer 0 1
@@ -559,7 +557,7 @@ class Dokumentflyt
     xsd:string flytMerknad 0 1	
 end
 
-class Moeteregistrering Basisregistrering
+class Moeteregistrering BasisRegistrering
 	xsd:string moeteregistreringstype 1 1
 	xsd:string moetesakstype 1 1
 	xsd:string moeteregistreringsstatus 0 1
@@ -569,7 +567,7 @@ class Moeteregistrering Basisregistrering
 	xsd:string referanseFraMoeteregistrering 0 *
 end
 
-class Dokumentbeskrivelse
+class DokumentBeskrivelse
 	xsd:string systemID 1 1
 	xsd:string dokumenttype 1 1
 	DokumentStatus dokumentstatus 1 1
