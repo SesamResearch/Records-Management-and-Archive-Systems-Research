@@ -366,7 +366,7 @@ class ArkivDel
 	
 	xsd:dateTime arkivperiodeStartDato 0 1
 	xsd:dateTime arkivperiodeSluttDato 0 1
-	xsd:string referanseForloeper referanseForloeper 0 1
+	xsd:string referanseForloeper 0 1
     xsd:string referanseArvtaker 0 1
 	
 	Kassasjon kassasjon 0 1
@@ -503,7 +503,7 @@ class Basisregistrering Registrering
 	DokumentMedium dokumentmedium 0 1
 	xsd:string oppbevaringssted 0 *					  
 	Merknad merknad 0 *
-	Kryssreferanse kryssreferanse0 *
+	Kryssreferanse kryssreferanse 0 *
 end
 
 class Journalpost BasisRegistrering
