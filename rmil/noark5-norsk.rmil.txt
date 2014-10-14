@@ -324,8 +324,6 @@ instance journalstatus:utgar JournalStatus
 	tittel "Utgår"
 end
 
-
-
 class Aggregation 
 end
 

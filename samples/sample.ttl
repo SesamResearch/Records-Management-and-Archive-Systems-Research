@@ -1,0 +1,137 @@
+
+# Example RDF TTL file for Noark5 Archive Structure.
+# Author: Graham Moore, graham.moore@sesam.io
+
+# Base namespace for all predicates and types
+PREFIX noark5: http://www.arkivverket.no/standarder/noark5/arkivstruktur/
+
+PREFIX us: <http://sesam.io/sys1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/2000/01/rdf#>
+PREFIX journalstatus: <http://www.arkivvet.no/standarder/noark5/vokabular/journalstatus/>
+PREFIX journalposttype: <http://www.arkivvet.no/standarder/noark5/vokabular/journalposttype/>
+PREFIX korrespondanseparttype <http://www.arkivvet.no/standarder/noark5/vokabular/korrespondanseparttype/>
+PREFIX saksstatus <http://www.arkivvet.no/standarder/noark5/vokabular/saksstatus/>
+
+us:635215931314411028203  a noark5:Arkiv ;
+                          noark5:systemID "635215931314411028203" ;
+						  noark5:tittel "Klare for avlevering" ;
+						  noark5:opprettetDato "1998-01-01T00:00:00" ;
+						  noark5:opprettetAv "Sosialsystem Socio"
+						  noark5:avsluttetDato "2013-12-02T14:58:51.4411028+01:00"
+						  noark5:avsluttetAv   "Sosialsystem Socio" ;
+						  noark5:arkivSkaper us:635215931314411028205 .
+						  
+
+us:635215931314411028205 a noark5:ArkivSkaper ;
+                         noark5:arkivskaperID "635215931314411028205" ;
+						 noark5:arkivskaperNavn "Tietokommune" .
+
+us:635215931314411028204 a noark5:ArkivDel ;
+						 noark5:tittel "Klare for avlevering" ;
+						 noark5:arkivdelstatus "Overlappingsperiode" ;
+						 noark5:opprettetDato "1998-01-01T00:00:00" ;
+						 noark5:opprettetAv "Sosialsystem Socio" ;
+						 noark5:avsluttetDato "2013-12-02T14:58:51.4411028+01:00" ;
+						 noark5:avsluttetAv "Sosialsystem Socio" ;
+						 noark5:skjerming _:skjerming-1 ;
+						 noark5:arkiv us:635215931314411028203 .
+
+_:skjerming-1 a Skjerming ;
+			  noark5:tilgangsrestriksjon "Unntatt offentlighet" ;
+			  noark5:skjermingshjemmel "Offentlighetsloven §13" ;
+			  noark5:skjermingMetadata "All informasjon skjermes" ;
+			  noark5:skjermingsvarighet "80" ;
+			  noark5:skjermingOpphoererDato "2093-12-02" .
+
+
+us:6352159313012610281 a mappe ;
+					   noark5:systemId "6352159313012610281" ;
+					   noark5:mappeID "25065542822" ;
+					   noark5:tittel "Bredholt Edvardsen, Marthe" ;
+					   noark5:opprettetDato "1998-01-01T00:00:00" ;
+					   noark5:opprettetAv "Sosialsystem Socio" ;
+					   noakr5:avsluttetDato "2013-02-15T00:00:00" ;
+					   noark5:avsluttetAv "Sosialsystem Socio" ;
+					   noark5:kassasjon _:kassasjon-1 ;
+					   noark5:skjerming _:skjerming-2 ;
+					   noark5:parentArkivDel us:635215931314411028204 .
+
+_:kassasjon-1 a Kassasjon ;
+			  noark5:kassasjonsvedtak "Kasseres" ;
+			  noark5:bevaringstid 0 ;
+			  noark5:kassasjonsdato "2013-12-02" .
+					   
+_:skjerming-2 a Skjerming ;
+			  noark5:tilgangsrestriksjon "Unntatt offentlighet" ;
+			  noark5:skjermingshjemmel "Offentlighetsloven §13" ;
+			  noark5:skjermingMetadata "All informasjon skjermes" ;
+			  noark5:skjermingsvarighet "80" ;
+			  noark5:skjermingOpphoererDato "2093-02-15" .
+
+us:6352159313012710282 a SaksMapper ;
+					   noark5:systemId "6352159313012710282" ;
+					   noark5:mappeID "SOSSAK_884" ;
+					   noark5:tittel "Søknad om krisehjelp" ;
+					   noark5:opprettetDato "2013-01-12T00:00:00" ;
+					   noark5:opprettetAv "Skillingstad, Heidi" ;
+					   noakr5:avsluttetDato "2013-01-12T00:00:00" ;
+					   noark5:avsluttetAv "Skillingstad, Heidi" ;
+					   noark5:kassasjon _:kassasjon-2 ;
+					   noark5:skjerming _:skjerming-3 ;
+					   noark5:saksdato "2013-01-12" ;
+					   noark5:administrativEnhet "Kommunen" ;
+					   noark5:saksansvarlig "Ali, Mohammad" ;
+					   noark5:saksstatus saksstatus:avsluttet ;
+					   noark5:parentMappe us:6352159313012610281 .
+
+_:kassasjon-2 a Kassasjon ;
+			  noark5:kassasjonsvedtak "Kasseres" ;
+			  noark5:bevaringstid 0 ;
+			  noark5:kassasjonsdato "2013-12-02" .
+					   
+_:skjerming-3 a Skjerming ;
+			  noark5:tilgangsrestriksjon "Unntatt offentlighet" ;
+			  noark5:skjermingshjemmel "Offentlighetsloven §13" ;
+			  noark5:skjermingMetadata "All informasjon skjermes" ;
+			  noark5:skjermingsvarighet "80" ;
+			  noark5:skjermingOpphoererDato "2093-01-12" .
+
+us:6352159313012810283 a JournalPost ;
+					   noark5:opprettetDato "2013-02-19T00:00:00" ;
+					   noark5:opprettetAv "Ali, Mohammad" ;
+					   noark5:arkivertDato "2013-02-19T00:00:00" ;
+					   noark5:arkivertAv "Ali, Mohammad" ;
+					   noark5:kassasjon _:kassasjon-3 ;
+					   noark5:skjerming _:skjerming-4 ;
+					   noark5:registreringsID "13.2.884.2" ;
+					   noark5:tittel "Søknad om krisehjelp" ;
+					   noark5:noekkelord "25065542822" ;
+					   noark5:noekkelord "Bredholt Edvardsen, Marthe" ;
+					   noark5:journalposttype journalposttype:inngaendedokument ;
+					   noark5journalstatus journalstatus:arkivert ;
+					   noark5:journaldato "2013-01-12" ;
+					   noark5:korrespondansepart _:korrespondansepart-1 ;
+					   noark5:parentMappe us:6352159313012710282 .
+					    					   
+_:kassasjon-3 a Kassasjon ;
+			  noark5:kassasjonsvedtak "Kasseres" ;
+			  noark5:bevaringstid 0 ;
+			  noark5:kassasjonsdato "2013-12-02" .
+					   
+_:skjerming-4 a Skjerming ;
+			  noark5:tilgangsrestriksjon "Unntatt offentlighet" ;
+			  noark5:skjermingshjemmel "Offentlighetsloven §13" ;
+			  noark5:skjermingMetadata "All informasjon skjermes" ;
+			  noark5:skjermingsvarighet "80" ;
+			  noark5:skjermingOpphoererDato "2093-01-12" .
+
+_:korrespondansepart-1 a Korrespondansepart;
+					   noark5:korrespondanseparttype korrespondanseparttype:avsender ;
+					   noark5:korrespondansepartNavn "redholt Edvardsen, Marthe" .
+
+
+			  
+			  
+					   
+			  
