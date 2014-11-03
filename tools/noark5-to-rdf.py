@@ -28,13 +28,27 @@ ContainedObjectElements = ["skjerming", "kassasjon"]
 
 noark5_prefix = "http://www.arkivverket.no/standarder/noark5/arkivstruktur/"
 
+class Store:
+
+    def __init__(self):
+        self.entities = {}
+
+    def addEntity(self, entity):
+        self.entities[entity.id] = entity
+
 class Entity:
 
-    def init(self):
-        self.identity
+    def __init__(self):
+        self.id = ""
+        self.type = ""
+        self.__properties = []
+
+    def addProperty(self, property):
+        self.__properties.append(property)
+
 
 class Property:
-    def init(self):
+    def __init__(self):
         self.propType = ""
         self.propValue = ""
         self.isLiteral = ""
@@ -55,13 +69,21 @@ def LowerFirstChar(val):
 
 class Noark5XmlHandler(xml.sax.ContentHandler):
 
-    def init(self):
-        self.parent = ""
-        self.properties = []
-        self.subject = ""
-        self.currentProperty = None
+    def __init__(self):
+        self.parentEntity = ""
+        self.currentEntity = None
 
     def startElement(self, name, attrs):
+        if name in ObjectElements:
+            pass
+        elif name in ContainedObjectElements:
+            # create contained entity
+            pass
+        else:
+            # property
+            pass
+
+
         self.currentProperty = Property()
         self.currentProperty.init()
         self.currentProperty.setPropertyType(noark5_prefix + name)
