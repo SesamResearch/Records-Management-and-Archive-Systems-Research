@@ -1,0 +1,21 @@
+type_prefix : http://www.arkivverket.no/standarder/noark5/arkivstruktur/
+subject_prefix : http://sesam.io/sys1/
+ObjectElements:
+    arkiv:
+      id: systemID
+      subject_prefix: http://sesam.io/sys1/
+    arkivdel:
+      id: systemID
+    mappe: 
+      id: systemID
+    registrering:
+      id: systemID
+    skjerming: 
+      id:
+    kassasjon:
+      id:
+    korrespondansepart:
+      id:
+    arkivskaper:
+      id: arkivskaperID
+output_dir: output
