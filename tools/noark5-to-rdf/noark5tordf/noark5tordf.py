@@ -162,6 +162,25 @@ class Entity:
         """ Return a string representation of this entity """
         return "Entity '%s' (id: %s)" % (self._name, self.getId() or self.getNumberedId())
 
+    def getType(self):
+        """ Get the type (postfix) to use, it's either given the element name or
+        a given xsi:type attribute. It can be overridden in the config using a "type" value.
+        """
+
+        # Deault type postfix is capitalized element name
+        etype = self._name
+        
+        # Is there xsi:type in the attributes?
+        if "xsi:type" in self._attrs.keys():
+            etype = self._attrs["xsi:type"]
+            
+        # Check for override in config
+        if etype in self._config["ObjectElements"].keys():
+            # Leave the decision to capitalize or not to the config if its overridden
+            return self._config["ObjectElements"][etype].get("type", etype.title())
+            
+        return etype.title()
+        
     def generateNTriples(self, recurse=True):
         """
         Serialize the properties and entities of this entity as RDF NTriples.
@@ -171,7 +190,7 @@ class Entity:
         subject = self.getSubject()
         s = ""
 
-        s = s + "%s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <%s>.\n" % (subject, self._config["type_prefix"] + self._name.title())
+        s = s + "%s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <%s>.\n" % (subject, self._config["type_prefix"] + self.getType())
 
         for prop in self._properties:
             s = s + '%s <%s> "%s".\n' % (subject, prop.getPredicate(), escape_literal(prop.getValue()))
@@ -274,7 +293,7 @@ class Noark5XmlHandler(xml.sax.ContentHandler):
             filename = self.config.get("output_dir",".") + os.path.sep + "%s.nt" % id
 
             if self.logger:
-                self.logger.info("Writing entity '%s' to file '%s'" % (entity.getName(), filename))
+                self.logger.info("Writing %s to file '%s'" % (entity, filename))
 
             with open(filename, "w") as output:
                 output.write(entity.generateNTriples(recurse=False))
@@ -308,7 +327,7 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
         # if no "subject_prefix" is given, the default is used
 
         "ObjectElements" : {
-            "arkiv" : {"id" : "systemID", "subject_prefix" : "http://sesam.io/sys1/"},
+            "arkiv" : {"id" : "systemID", "subject_prefix" : "http://sesam.io/sys1/", "type" : "Arkiv"},
             "arkivdel" : {"id" : "systemID"},
             "mappe" : {"id" : "systemID"},
             "registrering" : {"id" : "systemID"},
