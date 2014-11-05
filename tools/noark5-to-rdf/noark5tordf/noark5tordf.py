@@ -286,7 +286,7 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
             "korrespondansepart" : {"id" : None},
             "arkivskaper": {"id" : "arkivskaperID"},
         },
-        "output_dir" : None,
+        "output_dir" : "",
         "logfile" : logfile,
         "loglevel" : loglevel
     }
@@ -304,10 +304,11 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
         config = yaml.load(stream)
         stream.close()
     else:
-        msg = "Could not find config file '%s'!" % config_file
+        config = {}
+        msg = "Could not find config file '%s'. Using defaults." % config_file
         if logger:
-            logger.error(msg)
-        raise Exception(msg)
+            logger.warning(msg)
+        
 
     default_config.update(config)
     if not os.path.isabs(default_config["output_dir"]):
@@ -335,7 +336,7 @@ def main():
     stdout_handler.setFormatter(logging.Formatter(format_string))
     logger.addHandler(stdout_handler)
 
-    parser = argparse.ArgumentParser(description="Noark5 to RDF v0.1")
+    parser = argparse.ArgumentParser(description="Noark5 to RDF 1.0.0")
     parser.add_argument("-i", "--input", dest='inputfile',
                         help='Path to input XML file', required=True)
 
