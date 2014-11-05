@@ -1,4 +1,7 @@
-# Noark5 to RDF Converter version 0.1
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Noark5 to RDF Converter version 1.0.0
 # Author: Graham Moore, graham.moore@sesam.io
 
 import sys, os, errno
@@ -9,7 +12,9 @@ import yaml
 
 
 def _is_sequence(arg):
+    """ Checks if "arg" is a proper sequence or not (i.e. list, tuple..) """
     return not hasattr(arg, "strip") and (hasattr(arg, "__getitem__") or hasattr(arg, "__iter__"))
+
 
 def assertDir(path, rootdir=None):
     """ Make sure the given directory/ies exists in the given or current path """
@@ -37,7 +42,6 @@ def assertDir(path, rootdir=None):
                 raise
 
 
-# Used for escaping literals
 def _xmlcharref_encode(unicode_data, encoding="ascii"):
     """Emulate Python 2.3's 'xmlcharrefreplace' encoding error handler."""
     res = ""
@@ -59,14 +63,15 @@ def _xmlcharref_encode(unicode_data, encoding="ascii"):
 
 
 def escape_literal(literal):
+    """ Escape the string literal as per NTriples rules """
     literal = literal.replace('\\', '\\\\').replace('\n', '\\n').replace('"', '\\"').replace('\r', '\\r').replace('\v', '')
     literal = _xmlcharref_encode(literal, "ascii")
     return literal
 
 
-# "Objects" - (TODO: how do we RDF-ify attributes?)
+# TODO: how do we RDF-ify attributes?
 class Entity:
-
+    """ Class to encapsulate XML entities """
     def __init__(self, name, attrs, config, parent=None, count_dict={}):
         self._name = name
         self._attrs = attrs
@@ -96,6 +101,10 @@ class Entity:
         return "%s-%s" % (self._name, self._counter)
 
     def getId(self):
+        """
+        Figure out the ID that this entity has and cache it. ID-less entities are
+        treated as RDF blank nodes.
+        """
         if self._id is not None:
             return self._id
 
@@ -116,9 +125,11 @@ class Entity:
         return self._id
         
     def isContainedObject(self):
+        """ Checks if this entity is a ID-less entity contained object (aka blank node) """
         return self._config["ObjectElements"][self._name]["id"] is None
 
     def getSubject(self):
+        """ Return the subject URI for this entity - it is computed from the config and the id """
         if self._subject:
             return self._subject
 
@@ -134,18 +145,29 @@ class Entity:
         return self._subject
         
     def addEntity(self, entity):
+        """ Add a contained entity """
         self._entities.append(entity)
     
     def getEntities(self):
         return self._entities
  
     def addProperty(self, prop):
+        """ Add a property element object instance """
         self._properties.append(prop)
 
     def getProperties(self):
         return self._properties
-    
+
+    def __str__(self):
+        """ Return a string representation of this entity """
+        return "Entity '%s' (id: %s)" % (self._name, self.getId() or self.getNumberedId())
+
     def generateNTriples(self, recurse=True):
+        """
+        Serialize the properties and entities of this entity as RDF NTriples.
+        If "recurse" is True, it will traverse the three and serialize all nodes
+        """
+
         subject = self.getSubject()
         s = ""
 
@@ -169,8 +191,9 @@ class Entity:
         return s
 
 
-# Normal "properties" (TODO: how do we RDF-ify attributes?)
+# TODO: how do we RDF-ify attributes?
 class Property:
+    """ Class that encapsulates ordinary elements (properties) """
     def __init__(self, name, attrs, config, parent):
         self._name = name
         self._attrs = attrs
@@ -190,6 +213,7 @@ class Property:
         return self._parent
 
     def getPredicate(self):
+        """ Return the predicate to use when serializing objects of this type in RDF """
         return self._config["type_prefix"] + self._name
     
     def setValue(self, value):
@@ -200,7 +224,10 @@ class Property:
 
 
 class Noark5XmlHandler(xml.sax.ContentHandler):
-
+    """
+    SAX content handler class that can traverse a NOARK 5 compliant XML file
+    and construct a object tree that is then serialized to RDF (NTriples format)
+    """
     def __init__(self, config, logger=None):
         self.parent = ""
         self.properties = []
@@ -213,6 +240,7 @@ class Noark5XmlHandler(xml.sax.ContentHandler):
         self.logger = logger
 
     def startElement(self, name, attrs):
+        """ Create a entity or property object based on config lookup """
         if name in self.config["ObjectElements"]:
             if self.logger:
                 self.logger.debug("Start of entity:" + name)
@@ -227,12 +255,14 @@ class Noark5XmlHandler(xml.sax.ContentHandler):
             self.currentProperty = Property(name, attrs, self.config, self.currentEntity[0])
  
     def characters(self, text):
+        """ Add text value if the current node is a property """
         if self.currentProperty:
             if self.logger:
                 self.logger.debug("Value of element: " + text)
             self.currentProperty.setValue(text);
 
     def endElement(self, name):
+        """ Serialize to RDF if the ended element node is a entity """
         if name in self.config["ObjectElements"]:
             if self.logger:
                 self.logger.debug("end of entity: " + name)
@@ -255,11 +285,12 @@ class Noark5XmlHandler(xml.sax.ContentHandler):
 
 
 def getCurrDir():
+    """ Get the current directory """
     return os.path.realpath(os.path.curdir)
 
 
 def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
-    
+    """ Read a config file or return the default config """
     if not env:
         env = os.environ.copy()
 
@@ -293,7 +324,7 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
         
     config_file = configfile.strip()
     if not os.path.isabs(config_file):
-        root_folder = env.get("SESAM_CONF", getCurrDir())
+        root_folder = getCurrDir()
         config_file = os.path.join(root_folder, config_file)
 
     if logger:
@@ -312,13 +343,13 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
 
     default_config.update(config)
     if not os.path.isabs(default_config["output_dir"]):
-        root_folder = env.get("SESAM_DATA", getCurrDir())
+        root_folder = getCurrDir()
         default_config["output_dir"] = os.path.join(root_folder, default_config["output_dir"])
 
     assertDir(default_config["output_dir"])
 
     if not os.path.isabs(default_config["logfile"]):
-        log_folder = env.get("SESAM_LOGS", getCurrDir())
+        log_folder = getCurrDir()
         assertDir(log_folder)
         default_config["logfile"] = os.path.join(log_folder, default_config["logfile"])
 
@@ -329,7 +360,7 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
     
 
 def main():
-    
+    """ Parse arguments, set logger, read config and parse input """
     format_string = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     logger = logging.getLogger('noark5-to-rdf')
     stdout_handler = logging.StreamHandler()
@@ -365,5 +396,7 @@ def main():
     parser.setContentHandler(Noark5XmlHandler(config, logger=logger))
     parser.parse(open(options.inputfile,"r"))
 
+
+# Check if called from command line
 if __name__ == '__main__':
     main()
