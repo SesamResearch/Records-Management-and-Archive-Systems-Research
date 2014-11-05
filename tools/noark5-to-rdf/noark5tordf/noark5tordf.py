@@ -104,28 +104,41 @@ class Entity:
         Figure out the ID that this entity has and cache it. ID-less entities are
         treated as RDF blank nodes.
         """
+        
+        # If we have already computed this just return the previous result
         if self._id is not None:
             return self._id
 
-        if self.isContainedObject():
-            # Blank node
-            self._id = None
-        elif self._config["ObjectElements"][self._name]["id"][0]=="@":
-            # Attribute id
-            id_attribute = self._config["ObjectElements"][self._name]["id"].replace("@","")
-            self._id = self._attrs.getValue(id_attribute)
-        else:
-            # Normal property value
-            id_element = self._config["ObjectElements"][self._name]["id"]
-            # Pick the last matching element if there are several
-            props = [prop for prop in self._properties if prop.getName() == id_element]
-            self._id =  props[-1].getValue()
+        # A blank node is either it's explicitly stated with a "id" config property set to None...
+        if "id" in self._config["ObjectElements"][self._name] and  self._config["ObjectElements"][self._name]["id"] is None:
+            return None
         
+        # ..or implicitly if none of the config given or global ids match any of its properties or attributes       
+        ids = self._config["ObjectElements"].get("id", [])
+        if not _is_sequence(ids):
+            ids = [ids]
+        
+        ids = list(tuple(ids + self._config.get("ids", [])))
+        
+        for id_element in ids:
+            # Attribute ID?
+            if id_element[0] == "@":
+                if id_element[1:] in self._attrs.keys():
+                    self._id = self._attrs[id_element[1:]]
+                    break
+            else:
+                # Normal element value
+                props = [prop for prop in self._properties if prop.getName() == id_element]
+                if len(props) > 0:
+                    self._id =  props[-1].getValue()
+                    break
+
         return self._id
         
     def isContainedObject(self):
         """ Checks if this entity is a ID-less entity contained object (aka blank node) """
-        return self._config["ObjectElements"][self._name]["id"] is None
+
+        return self.getId() == None
 
     def getSubject(self):
         """ Return the subject URI for this entity - it is computed from the config and the id """
@@ -220,6 +233,7 @@ class Entity:
                 s = s + entity.generateNTriples()
 
         return s
+
 
 
 class Property:
@@ -330,6 +344,9 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
 
         # Default subject prefix
         "subject_prefix" : "http://sesam.io/sys1/",
+        
+        # Default id elements
+        "ids" : ["systemID", "arkivskaperID"],
 
         # ObjectElements are the names of XML elements that should produce new RDF resources
         # The form is Key : idElement - if the idElement begins with a "@" it is an attribute,
@@ -339,13 +356,13 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
 
         "ObjectElements" : {
             "arkiv" : {"id" : "systemID", "subject_prefix" : "http://sesam.io/sys1/", "type" : "Arkiv"},
-            "arkivdel" : {"id" : "systemID"},
-            "mappe" : {"id" : "systemID"},
-            "registrering" : {"id" : "systemID"},
+            "arkivdel" : {},
+            "mappe" : {},
+            "registrering" : {},
             "skjerming" : {"id" : None},
             "kassasjon" : {"id" : None},
             "korrespondansepart" : {"id" : None},
-            "arkivskaper": {"id" : "arkivskaperID"},
+            "arkivskaper": {},
         },
         "output_dir" : "",
         "logfile" : logfile,
