@@ -69,7 +69,6 @@ def escape_literal(literal):
     return literal
 
 
-# TODO: how do we RDF-ify attributes?
 class Entity:
     """ Class to encapsulate XML entities """
     def __init__(self, name, attrs, config, parent=None, count_dict={}):
@@ -194,6 +193,19 @@ class Entity:
 
         for prop in self._properties:
             s = s + '%s <%s> "%s".\n' % (subject, prop.getPredicate(), escape_literal(prop.getValue()))
+            # Properties with attributes are expanded to seperate elements
+            prop_attrs = prop.getAttrs()
+            for attr in prop_attrs.keys():
+                if attr.find(":") > -1:
+                    attr = attr.split(":")[-1]
+
+                s = s + '%s <%s> "%s".\n' % (subject, prop.getPredicate() + "-" + attr, escape_literal(prop_attrs[attr]))
+                
+        # Treat attributes as properties
+        for attr in self._attrs.keys():
+            pred_id = attr.replace(":", "-")
+
+            s = s + '%s <%s> "%s".\n' % (subject, self._config["type_prefix"] + pred_id, escape_literal(self._attrs[attr]))
         
         # We link to our parent if we're not a blank node
         if not self.isContainedObject() and self._parent is not None:
@@ -210,7 +222,6 @@ class Entity:
         return s
 
 
-# TODO: how do we RDF-ify attributes?
 class Property:
     """ Class that encapsulates ordinary elements (properties) """
     def __init__(self, name, attrs, config, parent):
@@ -288,7 +299,7 @@ class Noark5XmlHandler(xml.sax.ContentHandler):
 
             entity = self.currentEntity[0]
             
-            id = entity.getId() or self.root.getId() + "-" + entity.getNumberedId()
+            id = (entity.getId() or self.root.getId() or "root") + "-" + entity.getNumberedId()
 
             filename = self.config.get("output_dir",".") + os.path.sep + "%s.nt" % id
 
