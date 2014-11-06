@@ -72,7 +72,7 @@ class ConfigXmlHandler(xml.sax.ContentHandler):
 
             # Default subject prefix
             "subject_prefix" : "http://data.sesam.io/",
-
+            "ids" : ["id"],
             "ObjectElements" : self.entities,
             "output_dir" : "output",
             "input_dir" : "input",
