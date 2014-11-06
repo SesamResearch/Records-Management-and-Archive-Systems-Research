@@ -1,0 +1,18 @@
+type_prefix : http://www.arkivverket.no/standarder/noark5/arkivstruktur/
+document_url_prefix: http://localhost:8080/someservice/
+subject_prefix : http://sesam.io/sys1/
+ObjectElements:
+    korrespondansepart:
+         id-expression: |
+             result = randomID()
+    referanseDokumentfil:
+        value: |
+            result = config["document_url_prefix"] + value
+        literal:
+            False
+ids:
+    - systemID
+    - arkivskaperID
+input_dir: input
+backup_dir: backup
+output_dir: output
