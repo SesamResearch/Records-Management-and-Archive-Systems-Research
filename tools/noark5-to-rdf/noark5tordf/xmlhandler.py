@@ -5,7 +5,7 @@ import os
 import xml.sax
 
 from elements import Entity
-
+from utils import *
 
 class GeneralXmlHandler(xml.sax.ContentHandler):
     """
@@ -62,8 +62,8 @@ class GeneralXmlHandler(xml.sax.ContentHandler):
         # Pick a entity element off the stack
         entity = self.getCurrentEntity(pop=True)
 
-#        if entity.getName() == "provider":        
-#            import pdb;pdb.set_trace()
+        #if entity.getName() == "registrering":
+        #    import pdb;pdb.set_trace()
         
         # Is this a "property" type element?
         if len(entity.getEntities()) == 0:
@@ -73,10 +73,10 @@ class GeneralXmlHandler(xml.sax.ContentHandler):
             self.text = ""
 
         # If it is a "object" type element, serialize it to NTriples
-        if not entity.isProperty():
-            id = (entity.getId() or self.root.getId() or "root") + "-" + entity.getNumberedId()
+        if not (entity.isProperty() or entity.isContainedObject()):
+            id = entity.getSubject() + "-" + entity.getType()
 
-            filename = self.config.get("output_dir",".") + os.path.sep + "%s.nt" % id
+            filename = self.config.get("output_dir",".") + os.path.sep + "%s.nt" % stringToFilename(id)
 
             if self.logger:
                 self.logger.info("Writing %s to file '%s'" % (entity, filename))
@@ -87,7 +87,7 @@ class GeneralXmlHandler(xml.sax.ContentHandler):
             # We're done with this object now, hand it over to GC
             entity.cleanUp()
             del entity
-       
+
     def characters(self, text):
         """ Accumulate text values """
         self.text += text

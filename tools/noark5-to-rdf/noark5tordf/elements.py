@@ -5,18 +5,17 @@ from utils import *
 
 class Entity:
     """ Class to encapsulate XML entities """
-    def __init__(self, name, attrs, config, parent=None, namespace=None, count_dict=None):
+    def __init__(self, name, attributes, config, parent=None, namespace=None, count_dict=None):
         # Most of the properties are calculated only once and then
         # "frozen" so we can  GC things on the fly
         self._name = name
-        self._attrs = attrs
+        self._attributes = attributes
         self._entities = []
         self._parent = parent
         self._id = None
         self._subject = None
         self._config = config
         self._namespace = namespace
-        self._is_contained_object = None
         self._numbered_id = None
         self._str_rep = None
         self._value = None
@@ -24,6 +23,7 @@ class Entity:
         self._type_prefix = None
         self._type_predicate = None
         self._predicate = None
+        self._is_contained_object = None
         
         if count_dict is not None:
             # Number the entity (for blank nodes)        
@@ -38,23 +38,47 @@ class Entity:
     # Make things easy for the GC
     def cleanUp(self):
         self._entities = None
-        self._attrs = None
+        self._attributes = None
         self._parent = None
         del self._entities
-        del self._attrs
+        del self._attributes
         
-    def getAttrs(self):
-        return self._attrs
+    def getAttributes(self):
+        return self._attributes
     
     def getName(self):
         return self._name
 
+    def isLiteral(self):
+        if "literal" in self._config["ObjectElements"].get(self._name, {}):
+            return self._config["ObjectElements"][self._name]["literal"]
+
+        return True       
+    
+    def getDataType(self):
+        if self.isLiteral() and "datatype" in self._config["ObjectElements"].get(self._name, {}):
+            return self._config["ObjectElements"][self._name]["datatype"]
+
+        return None
+
+    def getLanguage(self):
+        if self.isLiteral() and "lang" in self._config["ObjectElements"].get(self._name, {}):
+            return self._config["ObjectElements"][self._name]["lang"]
+
+        return None
+
     def setValue(self, value):
-        self._value = value
-        
+        # Check for value expression       
+        if "value" in self._config["ObjectElements"].get(self._name, {}):
+            params = {"value": value, "context" : self, "config" : self._config}
+            exec(self._config["ObjectElements"][self._name]["value"], globals(), params)
+            self._value = params["result"]
+        else:
+            self._value = value
+
     def getValue(self):
         return self._value
-    
+   
     def isProperty(self):
         return self._value is not None
 
@@ -77,10 +101,20 @@ class Entity:
         if self.isProperty():
             self._id = self._name
         else:
+            # Check if the id is an expression
+            
             # A blank node is either it's explicitly stated with a "id" config property set to None...
             if "id" in self._config["ObjectElements"].get(self._name, {}) and  self._config["ObjectElements"][self._name]["id"] is None:
                 return None
             
+            # ..or explicitly using a "id-expression" python expression
+            
+            if "id-expression" in self._config["ObjectElements"].get(self._name, {}):
+                params = {"context" : self, "config" : self._config}
+                exec(self._config["ObjectElements"][self._name]["id-expression"], globals(), params)
+                self._id = params["result"]
+                return self._id
+ 
             # ..or implicitly if none of the config given or global ids match any of its properties or attributes       
             ids = self._config["ObjectElements"].get(self._name,{}).get("id", [])
             if not is_sequence(ids):
@@ -91,8 +125,8 @@ class Entity:
             for id_element in ids:
                 # Attribute ID?
                 if id_element[0] == "@":                
-                    if id_element[1:] in self._attrs.getQNames():
-                        self._id = self._attrs.getValueByQName(id_element[1:])
+                    if id_element[1:] in self._attributes.getQNames():
+                        self._id = self._attributes.getValueByQName(id_element[1:])
                         break
                 else:
                     # Normal element value
@@ -102,13 +136,13 @@ class Entity:
                         break
 
         return self._id
-        
+
     def isContainedObject(self):
         """ Checks if this entity is a ID-less entity contained object (aka blank node) """
-
+        
         if self._is_contained_object is None:
-            self._is_contained_object = (self.getId() == None)
-            
+            self._is_contained_object = self.getId() == None and not self.isProperty()
+
         return self._is_contained_object
 
     def getSubject(self):
@@ -118,13 +152,13 @@ class Entity:
 
         id = self.getId()
 
+        # Blank nodes are treated as a special case
         if id is None:
-            # Blank nodes are just numbered elements
             self._subject = "_:%s" % self.getNumberedId()
         else:
             # Get subject prefix for element, or the global one if none is configured
             self._subject = "<" + self._config["ObjectElements"].get(self._name, {}).get("subject_prefix", self._config["subject_prefix"]) + id + ">"
-       
+
         return self._subject
         
     def addEntity(self, entity):
@@ -134,6 +168,9 @@ class Entity:
     def getEntities(self):
         return self._entities
  
+    def getParent(self):
+        return self._parent
+
     def getProperties(self):
         for entity in self._entities:
             if entity.isProperty():
@@ -168,8 +205,8 @@ class Entity:
         etype = self._name
         
         # Is there xsi:type in the attributes?
-        if ('http://www.w3.org/2001/XMLSchema-instance', 'type') in self._attrs.keys():
-            etype = self._attrs[('http://www.w3.org/2001/XMLSchema-instance', 'type')]
+        if ('http://www.w3.org/2001/XMLSchema-instance', 'type') in self._attributes.keys():
+            etype = self._attributes[('http://www.w3.org/2001/XMLSchema-instance', 'type')]
 
         # Check for override in config
         if etype in self._config["ObjectElements"].keys():
@@ -211,29 +248,57 @@ class Entity:
 
         s = s + "%s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <%s>.\n" % (subject, self.getTypePredicate())
 
-        # Treat attributes as properties
-        for uri, attr in self._attrs.keys():
+        # Treat attributes as string literals
+        # TODO: what about language and datatype for these?
+        for uri, attr in self._attributes.keys():
             if uri:
                 predicate = uri + "/" + attr
             else:
                 predicate = self._config["type_prefix"] + attr
 
-            s = s + '%s <%s> "%s".\n' % (subject, predicate, escape_literal(self._attrs[(uri, attr)]))
+            s = s + '%s <%s> "%s".\n' % (subject, predicate, escape_literal(self._attributes[(uri, attr)]))
         
         # We link to our parent (if we're not a blank node)
-        if not self.isContainedObject() and self._parent is not None:
-            s = s + '%s <%s> %s.\n' % (subject, self._parent.getPredicate(), self._parent.getSubject())
+        if not self.isContainedObject() and self.getParent() is not None:
+            s = s + '%s <%s> %s.\n' % (subject, self.getParent().getPredicate(), self.getParent().getSubject())
 
         # Serialize properties and add links to blank nodes
         for entity in self._entities:
             if entity.isProperty():
-                s = s + '%s <%s> "%s".\n' % (subject, entity.getPredicate(), escape_literal(entity.getValue()))
-                # Properties with attributes are expanded to seperate elements
-                prop_attrs = entity.getAttrs()
+                if entity.isLiteral():
+                    lang = entity.getLanguage()
+                    
+                    # According to the spec, you can't have both lang and type on a literal (string is implied if lang is set)
+                    if lang is None or lang == "":
+                        postfix = self.getDataType()
+                        postfix = postfix and "^^<http://www.w3.org/2001/XMLSchema#>" + postfix or ""
+                    else:
+                        postfix = "@" + lang
+                    
+                    s = s + '%s <%s> "%s"%s.\n' % (subject, entity.getPredicate(), escape_literal(entity.getValue()), postfix)
+                else:
+                    s = s + '%s <%s> <%s>.\n' % (subject, entity.getPredicate(), escape_literal(entity.getValue()))
+
+                # Entities with attributes are expanded to seperate literals
+                # TODO: what about language and datatype for these?
+                try:
+                    prop_attrs = entity.getAttributes()
+                except:
+                    import pdb;pdb.set_trace()
                 for uri, pred_id in prop_attrs.keys():
                     s = s + '%s <%s> "%s".\n' % (subject, entity.getPredicate() + "-" + pred_id, escape_literal(prop_attrs[(uri, pred_id)]))
+
+                # Properties and blank node hierarchies can be disposed of after serialization
+                entity.cleanUp()
+                    
             elif entity.isContainedObject():
                 # All parents link *to* their blank nodes
                 s = s + '%s <%s> %s.\n' % (subject, entity.getPredicate(), entity.getSubject())
+                
+                # Serialize the blank node tree within its parent
+                s = s + entity.generateNTriples()
+            
+                # Properties and blank node hierarchies can be disposed of after serialization
+                entity.cleanUp()
 
         return s

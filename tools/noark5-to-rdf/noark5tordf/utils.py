@@ -1,11 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os,errno
+import os, errno, unicodedata, re, uuid
+
 
 def is_sequence(arg):
     """ Checks if "arg" is a proper sequence or not (i.e. list, tuple..) """
     return not hasattr(arg, "strip") and (hasattr(arg, "__getitem__") or hasattr(arg, "__iter__"))
+
+def randomSubject():
+    return uuid.uuid4().urn
+
+def randomID():
+    return str(uuid.uuid4())
+
+def stringToFilename(s):
+    """
+    Normalizes string, converts to lowercase, removes non-alpha characters,
+    and converts spaces to hyphens.
+    """
+    s = str(unicodedata.normalize('NFKD', s).encode('ascii', 'ignore'))
+    s = re.sub('[^\w\s-]', '', s).strip().lower()
+    return re.sub('[-\s]+', '-', s)
 
 
 def assertDir(path, rootdir=None):
