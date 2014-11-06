@@ -28,14 +28,6 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
         # if no "subject_prefix" is given, the default is used
 
         "ObjectElements" : {
-            "arkiv" : {"id" : "systemID", "subject_prefix" : "http://sesam.io/sys1/", "type" : "Arkiv"},
-            "arkivdel" : {},
-            "mappe" : {},
-            "registrering" : {},
-            "skjerming" : {"id" : None},
-            "kassasjon" : {"id" : None},
-            "korrespondansepart" : {"id" : None},
-            "arkivskaper": {},
         },
         "output_dir" : "",
         "logfile" : logfile,
