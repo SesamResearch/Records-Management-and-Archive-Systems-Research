@@ -4,8 +4,8 @@
 import os
 import xml.sax
 
-from elements import Entity
-from utils import *
+from .elements import Entity
+from .utils import *
 
 class GeneralXmlHandler(xml.sax.ContentHandler):
     """

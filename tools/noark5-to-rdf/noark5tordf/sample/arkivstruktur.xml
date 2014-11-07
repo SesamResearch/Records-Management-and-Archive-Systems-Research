@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?><arkiv xmlns="http://www.arkivverket.no/standarder/noark5/arkivstruktur" xmlns:ns2="http://www.helseetaten.oslo.kommune.no/fasitVSM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.helseetaten.oslo.kommune.no/fasitVSM fasit-virksomhetsspesifikkeMetadata.xsd">
+  <systemID>ba2f34cb-dac7-4987-b25c-16bd760a9035</systemID>
+  <tittel>fasit</tittel>
+  <arkivstatus>Opprettet</arkivstatus>
+  <opprettetDato>2014-11-04T15:09:19.849+01:00</opprettetDato>
+  <opprettetAv>fasit-user</opprettetAv>
+  <arkivskaper>
+    <arkivskaperID>997506499</arkivskaperID>
+    <arkivskaperNavn>997506499</arkivskaperNavn>
+  </arkivskaper>
+  <arkivdel>
+    <systemID>585231e2-9df9-4e2c-8288-2fdba64736c3</systemID>
+    <tittel>Avlevering_Kassasjon</tittel>
+    <opprettetDato>2014-11-04T15:09:19.998+01:00</opprettetDato>
+    <opprettetAv>fasit-user</opprettetAv>
+    <mappe>
+      <systemID>00e69f9d-e115-4134-a483-1807cf3e8ff3</systemID>
+      <mappeID>1</mappeID>
+      <tittel>Personer</tittel>
+      <opprettetDato>2017-01-01T15:17:34.376+01:00</opprettetDato>
+      <opprettetAv>fasit-user</opprettetAv>
+      <mappe>
+        <systemID>9be74d77-1dc0-424d-ae15-5e5f6c034c7f</systemID>
+        <mappeID>1</mappeID>
+        <tittel>10A00</tittel>
+        <opprettetDato>2014-11-04T15:10:29.598+01:00</opprettetDato>
+        <opprettetAv>Birger Ballangrud</opprettetAv>
+        <registrering xsi:type="journalpost">
+          <systemID>8689c066-36e3-48be-8bb4-ec535d4a5ece</systemID>
+          <opprettetDato>2014-11-04T15:10:29.598+01:00</opprettetDato>
+          <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+          <dokumentbeskrivelse>
+            <systemID>3f79d8ca-77f0-4dd1-a354-4686b54c4498</systemID>
+            <dokumentstatus>Dokumentet er under redigering</dokumentstatus>
+            <opprettetDato>2014-11-04T15:10:31.116+01:00</opprettetDato>
+            <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+            <tilknyttetRegistreringSom>Hoveddokument</tilknyttetRegistreringSom>
+            <tilknyttetDato>2014-11-04T15:10:31.116+01:00</tilknyttetDato>
+            <tilknyttetAv>Birger Ballangrud (baladmin)</tilknyttetAv>
+            <dokumentobjekt>
+              <versjonsnummer>1</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-04T15:10:29.598+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/10A00/a608fdb0-7a84-4dcd-b2ec-941640e57180/a5cfa2f5-b785-44eb-8107-f8e61285a76f/2e22ae5f-705b-40ec-ad33-8792d02da2a2/1b3610db-e426-47a8-9655-f5eae4897ee1.docx</referanseDokumentfil>
+              <sjekksum>DE09A50ADC9381883B6228FB77DDE8A8B9F7A01CF6CC20F3B59B8E57B027CF7F</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>40908</filstoerrelse>
+            </dokumentobjekt>
+            <dokumentobjekt>
+              <versjonsnummer>2</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-04T15:10:31.116+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/10A00/a608fdb0-7a84-4dcd-b2ec-941640e57180/a5cfa2f5-b785-44eb-8107-f8e61285a76f/0354dc77-f088-4508-b373-a5f0f060a485/8c3da97e-a88c-448d-b806-c12fe651f99e.docx</referanseDokumentfil>
+              <sjekksum>82568D6A54E7B1C5AF5F057FC5B1EB8441D0FD30240C9AF5E3AE24B616491C4C</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>31650</filstoerrelse>
+            </dokumentobjekt>
+          </dokumentbeskrivelse>
+          <tittel>CV</tittel>
+          <forfatter/>
+          <virksomhetsspesifikkeMetadata xsi:type="ns2:virksomhetsspesifikkeMetadata">
+            <ns2:uaktueltKommentar>CV - CV</ns2:uaktueltKommentar>
+            <ns2:dokumentMalNavn>CV - CV</ns2:dokumentMalNavn>
+            <ns2:dokumentererPlan xsi:nil="true"/>
+            <ns2:dokumentEiere>10A00</ns2:dokumentEiere>
+            <ns2:smsTelefonnummer xsi:nil="true"/>
+            <ns2:smsSendesdato xsi:nil="true"/>
+            <ns2:smsStatus xsi:nil="true"/>
+            <ns2:smsOppdatertIArkiv>false</ns2:smsOppdatertIArkiv>
+          </virksomhetsspesifikkeMetadata>
+          <journalaar>2014</journalaar>
+          <journalsekvensnummer>1</journalsekvensnummer>
+          <journalposttype>Utgående dokument</journalposttype>
+          <journalstatus>Journalført</journalstatus>
+          <dokumentetsDato>2014-11-04T15:10:29.594+01:00</dokumentetsDato>
+          <korrespondansepart>
+            <korrespondanseparttype>Avsender</korrespondanseparttype>
+            <korrespondansepartNavn>Birger Ballangrud (baladmin)</korrespondansepartNavn>
+          </korrespondansepart>
+          <korrespondansepart>
+            <korrespondanseparttype>Mottaker</korrespondanseparttype>
+            <korrespondansepartNavn>10A00</korrespondansepartNavn>
+          </korrespondansepart>
+        </registrering>
+        <registrering xsi:type="journalpost">
+          <systemID>1a0158a6-fea6-4c4d-950f-a681e2762b9b</systemID>
+          <opprettetDato>2014-11-04T15:11:03.683+01:00</opprettetDato>
+          <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+          <dokumentbeskrivelse>
+            <systemID>0fdfc0db-0fb5-4b7e-8470-baace6f41dbd</systemID>
+            <dokumentstatus>Dokumentet er under redigering</dokumentstatus>
+            <opprettetDato>2014-11-04T15:11:04.038+01:00</opprettetDato>
+            <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+            <tilknyttetRegistreringSom>Hoveddokument</tilknyttetRegistreringSom>
+            <tilknyttetDato>2014-11-04T15:11:04.038+01:00</tilknyttetDato>
+            <tilknyttetAv>Birger Ballangrud (baladmin)</tilknyttetAv>
+            <dokumentobjekt>
+              <versjonsnummer>1</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-04T15:11:03.683+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/10A00/143369d7-2319-469e-99a9-3368a0b1742d/d77a4830-adaa-4bb1-91ee-be5fdc6858d4/847b923b-49d2-476b-b088-75a8d345ca3d/b3a92a03-baaa-4a63-bc22-b9a5258af78c.docx</referanseDokumentfil>
+              <sjekksum>E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>0</filstoerrelse>
+            </dokumentobjekt>
+            <dokumentobjekt>
+              <versjonsnummer>2</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-04T15:11:04.038+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/10A00/143369d7-2319-469e-99a9-3368a0b1742d/d77a4830-adaa-4bb1-91ee-be5fdc6858d4/8d6e1f10-fda5-49fb-ba2e-4de508f584c5/d3aed9c7-8cff-4fe8-a1f9-479f3658dacc.docx</referanseDokumentfil>
+              <sjekksum>7BEF17268C4BA8E6EAAE8A29B79D26DBAB2228D7CAFF5A43FAEBAA721FA61C58</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>12335</filstoerrelse>
+            </dokumentobjekt>
+          </dokumentbeskrivelse>
+          <tittel>Ola ser helt normalt ut.</tittel>
+          <forfatter>baladmin</forfatter>
+          <virksomhetsspesifikkeMetadata xsi:type="ns2:virksomhetsspesifikkeMetadata">
+            <ns2:uaktueltKommentar>Journalnotat - Vanlig journalnotat</ns2:uaktueltKommentar>
+            <ns2:dokumentMalNavn>Journalnotat - Vanlig journalnotat</ns2:dokumentMalNavn>
+            <ns2:dokumentererPlan xsi:nil="true"/>
+            <ns2:temaer>Psykiatri</ns2:temaer>
+            <ns2:temaer>Helse</ns2:temaer>
+            <ns2:dokumentEiere>10A00</ns2:dokumentEiere>
+            <ns2:smsTelefonnummer xsi:nil="true"/>
+            <ns2:smsSendesdato xsi:nil="true"/>
+            <ns2:smsStatus xsi:nil="true"/>
+            <ns2:smsOppdatertIArkiv>false</ns2:smsOppdatertIArkiv>
+          </virksomhetsspesifikkeMetadata>
+          <journalaar>2014</journalaar>
+          <journalsekvensnummer>2</journalsekvensnummer>
+          <journalposttype>Organinternt dokument for oppfølging</journalposttype>
+          <journalstatus>Journalført</journalstatus>
+          <dokumentetsDato>2014-11-04T15:11:03.682+01:00</dokumentetsDato>
+          <korrespondansepart>
+            <korrespondanseparttype>Intern avsender</korrespondanseparttype>
+            <korrespondansepartNavn>Birger Ballangrud (baladmin)</korrespondansepartNavn>
+          </korrespondansepart>
+        </registrering>
+      </mappe>
+      <mappe>
+        <systemID>df8f51dd-754e-4725-adeb-bb5c8b8ffe30</systemID>
+        <mappeID>3</mappeID>
+        <tittel>30A00</tittel>
+        <opprettetDato>2014-11-20T15:12:59.580+01:00</opprettetDato>
+        <opprettetAv>Birger Ballangrud</opprettetAv>
+        <mappe xsi:type="saksmappe">
+          <systemID>2bac1d95-6907-443b-a9f3-a57f4a7717ac</systemID>
+          <mappeID>2014/000001</mappeID>
+          <tittel>2014/000240</tittel>
+          <opprettetDato>2014-11-20T15:12:59.580+01:00</opprettetDato>
+          <opprettetAv>Birger Ballangrud</opprettetAv>
+          <registrering xsi:type="journalpost">
+            <systemID>393dbd12-e291-4276-aef8-0b4ba9a022ff</systemID>
+            <opprettetDato>2014-11-20T15:12:59.580+01:00</opprettetDato>
+            <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+            <arkivertDato>2014-11-04T15:13:17.375+01:00</arkivertDato>
+            <arkivertAv>Birger Ballangrud (baladmin)</arkivertAv>
+            <dokumentbeskrivelse>
+              <systemID>0a141d1e-e095-4bf5-8e4f-c44eb3e714c1</systemID>
+              <dokumentstatus>Dokumentet er under redigering</dokumentstatus>
+              <opprettetDato>2014-11-20T15:13:00.921+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <tilknyttetRegistreringSom>Hoveddokument</tilknyttetRegistreringSom>
+              <tilknyttetDato>2014-11-20T15:13:00.921+01:00</tilknyttetDato>
+              <tilknyttetAv>Birger Ballangrud (baladmin)</tilknyttetAv>
+              <dokumentobjekt>
+                <versjonsnummer>1</versjonsnummer>
+                <variantformat>Arkivformat</variantformat>
+                <format>docx</format>
+                <opprettetDato>2014-11-20T15:12:59.580+01:00</opprettetDato>
+                <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+                <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/2014%2F000240/d07523e2-29f8-41d0-a2d3-b6c61586f296/db4de4eb-0f16-494b-a0c3-1e03c818904d/5f862a60-2d8b-4f42-8c82-be6f9e8cae08/62ee3fff-d179-4bd6-b976-4e2986a36bf6.docx</referanseDokumentfil>
+                <sjekksum>48CF9929CA418DE1D6AEAE64735A24AB3703CD2291BEBDE9C9F66F249A069307</sjekksum>
+                <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+                <filstoerrelse>81820</filstoerrelse>
+              </dokumentobjekt>
+              <dokumentobjekt>
+                <versjonsnummer>2</versjonsnummer>
+                <variantformat>Arkivformat</variantformat>
+                <format>docx</format>
+                <opprettetDato>2014-11-20T15:13:00.921+01:00</opprettetDato>
+                <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+                <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/2014%2F000240/d07523e2-29f8-41d0-a2d3-b6c61586f296/db4de4eb-0f16-494b-a0c3-1e03c818904d/0bcbe731-2a10-4167-863b-96fdfd7647f3/3cd02b94-21e1-493e-8478-4d71d623f477.docx</referanseDokumentfil>
+                <sjekksum>B03DEB29D344EC9E263FF2125BAD1CE15916FE09F4250F2ABDC2151B339BB72A</sjekksum>
+                <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+                <filstoerrelse>124477</filstoerrelse>
+              </dokumentobjekt>
+            </dokumentbeskrivelse>
+            <tittel>Innvilgelse</tittel>
+            <forfatter/>
+            <virksomhetsspesifikkeMetadata xsi:type="ns2:virksomhetsspesifikkeMetadata">
+              <ns2:uaktueltKommentar>Vedtak - Innvilgelse</ns2:uaktueltKommentar>
+              <ns2:dokumentMalNavn>Vedtak - Innvilgelse</ns2:dokumentMalNavn>
+              <ns2:dokumentererPlan xsi:nil="true"/>
+              <ns2:dokumentEiere>30A00</ns2:dokumentEiere>
+              <ns2:smsTelefonnummer xsi:nil="true"/>
+              <ns2:smsSendesdato xsi:nil="true"/>
+              <ns2:smsStatus xsi:nil="true"/>
+              <ns2:smsOppdatertIArkiv>false</ns2:smsOppdatertIArkiv>
+            </virksomhetsspesifikkeMetadata>
+            <journalaar>2014</journalaar>
+            <journalsekvensnummer>3</journalsekvensnummer>
+            <journalposttype>Utgående dokument</journalposttype>
+            <journalstatus>Utgår</journalstatus>
+            <dokumentetsDato>2014-11-20T15:12:59.468+01:00</dokumentetsDato>
+            <korrespondansepart>
+              <korrespondanseparttype>Avsender</korrespondanseparttype>
+              <korrespondansepartNavn>Birger Ballangrud (baladmin)</korrespondansepartNavn>
+            </korrespondansepart>
+            <korrespondansepart>
+              <korrespondanseparttype>Mottaker</korrespondanseparttype>
+              <korrespondansepartNavn>30A00</korrespondansepartNavn>
+            </korrespondansepart>
+          </registrering>
+          <registrering xsi:type="journalpost">
+            <systemID>d2f6dc67-790b-46dd-ad5c-63faff512e0a</systemID>
+            <opprettetDato>2014-11-21T15:13:35.853+01:00</opprettetDato>
+            <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+            <arkivertDato>2014-11-21T15:13:44.952+01:00</arkivertDato>
+            <arkivertAv>Birger Ballangrud (baladmin)</arkivertAv>
+            <dokumentbeskrivelse>
+              <systemID>5e93f9df-9900-4483-9a7f-ea427213caf1</systemID>
+              <dokumentstatus>Dokumentet er ferdigstilt</dokumentstatus>
+              <opprettetDato>2014-11-21T15:13:44.952+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <tilknyttetRegistreringSom>Hoveddokument</tilknyttetRegistreringSom>
+              <tilknyttetDato>2014-11-21T15:13:44.952+01:00</tilknyttetDato>
+              <tilknyttetAv>Birger Ballangrud (baladmin)</tilknyttetAv>
+              <dokumentobjekt>
+                <versjonsnummer>1</versjonsnummer>
+                <variantformat>Arkivformat</variantformat>
+                <format>docx</format>
+                <opprettetDato>2014-11-21T15:13:35.853+01:00</opprettetDato>
+                <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+                <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/2014%2F000240/e88ce2de-1067-40c2-9798-81374c0d6317/1a009227-b9b6-4532-a934-386af17fb968/b0f3bbb0-65f5-4214-ad61-4e5bfa7b3a7d/2e101017-b420-4122-ad4a-9ee97ce6371b.docx</referanseDokumentfil>
+                <sjekksum>44B6442A017BB6E483FF1FF3ED4A66E014BFD5F298FA55C2AD584B7BD7CBED0E</sjekksum>
+                <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+                <filstoerrelse>79395</filstoerrelse>
+              </dokumentobjekt>
+              <dokumentobjekt>
+                <versjonsnummer>2</versjonsnummer>
+                <variantformat>Arkivformat</variantformat>
+                <format>docx</format>
+                <opprettetDato>2014-11-21T15:13:36.603+01:00</opprettetDato>
+                <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+                <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/2014%2F000240/e88ce2de-1067-40c2-9798-81374c0d6317/1a009227-b9b6-4532-a934-386af17fb968/4f5e36a2-64c1-47e4-b748-640427e21709/f50bc4d0-9baa-4a21-b6c3-3164a42f3311.docx</referanseDokumentfil>
+                <sjekksum>6AA29EE36D21C9CA677BEC67D904CA63A75A4D32921A1DF269B5C0975C96EA1C</sjekksum>
+                <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+                <filstoerrelse>123143</filstoerrelse>
+              </dokumentobjekt>
+              <dokumentobjekt>
+                <versjonsnummer>3</versjonsnummer>
+                <variantformat>Arkivformat</variantformat>
+                <format>pdf</format>
+                <opprettetDato>2014-11-21T15:13:44.952+01:00</opprettetDato>
+                <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+                <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/2014%2F000240/e88ce2de-1067-40c2-9798-81374c0d6317/1a009227-b9b6-4532-a934-386af17fb968/db295571-8cfb-4096-ba4b-3f4f6bc7ce48/353be997-5fa7-41f6-8a1e-866ea2baf733.pdf</referanseDokumentfil>
+                <sjekksum>467EB6FF605D458B2B3A6B38D6D33AB7F9CB4FDDBBDC05BA0FE532BA928B7FE6</sjekksum>
+                <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+                <filstoerrelse>110312</filstoerrelse>
+              </dokumentobjekt>
+            </dokumentbeskrivelse>
+            <tittel>Avslag</tittel>
+            <forfatter/>
+            <virksomhetsspesifikkeMetadata xsi:type="ns2:virksomhetsspesifikkeMetadata">
+              <ns2:uaktueltKommentar>Vedtak - Avslag</ns2:uaktueltKommentar>
+              <ns2:dokumentMalNavn>Vedtak - Avslag</ns2:dokumentMalNavn>
+              <ns2:dokumentererPlan xsi:nil="true"/>
+              <ns2:dokumentEiere>30A00</ns2:dokumentEiere>
+              <ns2:smsTelefonnummer xsi:nil="true"/>
+              <ns2:smsSendesdato xsi:nil="true"/>
+              <ns2:smsStatus xsi:nil="true"/>
+              <ns2:smsOppdatertIArkiv>false</ns2:smsOppdatertIArkiv>
+            </virksomhetsspesifikkeMetadata>
+            <journalaar>2014</journalaar>
+            <journalsekvensnummer>4</journalsekvensnummer>
+            <journalposttype>Utgående dokument</journalposttype>
+            <journalstatus>Journalført</journalstatus>
+            <dokumentetsDato>2014-11-21T15:13:35.749+01:00</dokumentetsDato>
+            <korrespondansepart>
+              <korrespondanseparttype>Avsender</korrespondanseparttype>
+              <korrespondansepartNavn>Birger Ballangrud (baladmin)</korrespondansepartNavn>
+            </korrespondansepart>
+            <korrespondansepart>
+              <korrespondanseparttype>Mottaker</korrespondanseparttype>
+              <korrespondansepartNavn>30A00</korrespondansepartNavn>
+            </korrespondansepart>
+          </registrering>
+          <saksaar>2014</saksaar>
+          <sakssekvensnummer>1</sakssekvensnummer>
+          <saksdato>2014-11-20T15:12:59.580+01:00</saksdato>
+          <administrativEnhet>BAL/Bydel Alna</administrativEnhet>
+          <saksansvarlig>Birger Ballangrud (baladmin)</saksansvarlig>
+          <saksstatus>Under behandling</saksstatus>
+        </mappe>
+        <registrering xsi:type="journalpost">
+          <systemID>8aac37cd-a5d1-4140-8699-1dae3db79c10</systemID>
+          <opprettetDato>2014-11-21T15:14:42.781+01:00</opprettetDato>
+          <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+          <arkivertDato>2014-11-21T15:14:47.239+01:00</arkivertDato>
+          <arkivertAv>Birger Ballangrud (baladmin)</arkivertAv>
+          <dokumentbeskrivelse>
+            <systemID>c3b4aeec-3369-40fa-a28d-ebc4d7df5190</systemID>
+            <dokumentstatus>Dokumentet er ferdigstilt</dokumentstatus>
+            <opprettetDato>2014-11-21T15:14:47.239+01:00</opprettetDato>
+            <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+            <tilknyttetRegistreringSom>Hoveddokument</tilknyttetRegistreringSom>
+            <tilknyttetDato>2014-11-21T15:14:47.239+01:00</tilknyttetDato>
+            <tilknyttetAv>Birger Ballangrud (baladmin)</tilknyttetAv>
+            <dokumentobjekt>
+              <versjonsnummer>1</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-21T15:14:42.781+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/7a5e0d2d-240f-496d-9671-0efaab16f6d0/9cc95dab-f344-40f2-9243-ca9c92f79e75/0cb338cb-fe52-4e77-a886-407499508678/f6957821-aa6e-4ca1-b5da-c9f245d43792.docx</referanseDokumentfil>
+              <sjekksum>E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>0</filstoerrelse>
+            </dokumentobjekt>
+            <dokumentobjekt>
+              <versjonsnummer>2</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-21T15:14:43.060+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/7a5e0d2d-240f-496d-9671-0efaab16f6d0/9cc95dab-f344-40f2-9243-ca9c92f79e75/6e6a8698-ad51-459f-9a19-60be75fdb8bd/d3a3f050-4052-437f-ae4c-ca99012ce995.docx</referanseDokumentfil>
+              <sjekksum>D15B8C81520E1748598810F4CAB5740B5B543486351181F2C05B1FF9E4B21732</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>12335</filstoerrelse>
+            </dokumentobjekt>
+            <dokumentobjekt>
+              <versjonsnummer>3</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>pdf</format>
+              <opprettetDato>2014-11-21T15:14:47.239+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/7a5e0d2d-240f-496d-9671-0efaab16f6d0/9cc95dab-f344-40f2-9243-ca9c92f79e75/29265a60-8c80-4071-b6de-bc22411e9b79/24084cab-aae7-41fe-9a7a-a12d90adda49.pdf</referanseDokumentfil>
+              <sjekksum>D4D979666D5BC86815DA060F967C58013CDFED68D576DE303A4B4C2EE131A4CF</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>12956</filstoerrelse>
+            </dokumentobjekt>
+          </dokumentbeskrivelse>
+          <tittel>Eva har vært en flott dame.</tittel>
+          <forfatter>baladmin</forfatter>
+          <virksomhetsspesifikkeMetadata xsi:type="ns2:virksomhetsspesifikkeMetadata">
+            <ns2:uaktueltKommentar>Journalnotat - Vanlig journalnotat</ns2:uaktueltKommentar>
+            <ns2:dokumentMalNavn>Journalnotat - Vanlig journalnotat</ns2:dokumentMalNavn>
+            <ns2:dokumentererPlan xsi:nil="true"/>
+            <ns2:temaer>Telefonsamtale</ns2:temaer>
+            <ns2:temaer>Forvaltning</ns2:temaer>
+            <ns2:dokumentEiere>30A00</ns2:dokumentEiere>
+            <ns2:smsTelefonnummer xsi:nil="true"/>
+            <ns2:smsSendesdato xsi:nil="true"/>
+            <ns2:smsStatus xsi:nil="true"/>
+            <ns2:smsOppdatertIArkiv>false</ns2:smsOppdatertIArkiv>
+          </virksomhetsspesifikkeMetadata>
+          <journalaar>2014</journalaar>
+          <journalsekvensnummer>5</journalsekvensnummer>
+          <journalposttype>Organinternt dokument for oppfølging</journalposttype>
+          <journalstatus>Journalført</journalstatus>
+          <dokumentetsDato>2014-11-21T15:14:42.781+01:00</dokumentetsDato>
+          <korrespondansepart>
+            <korrespondanseparttype>Intern avsender</korrespondanseparttype>
+            <korrespondansepartNavn>Birger Ballangrud (baladmin)</korrespondansepartNavn>
+          </korrespondansepart>
+        </registrering>
+        <registrering xsi:type="journalpost">
+          <systemID>d5d0a713-aa25-442c-ab89-ba7706395488</systemID>
+          <opprettetDato>2014-11-22T15:15:02.956+01:00</opprettetDato>
+          <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+          <arkivertDato>2014-11-22T15:15:10.641+01:00</arkivertDato>
+          <arkivertAv>Birger Ballangrud (baladmin)</arkivertAv>
+          <dokumentbeskrivelse>
+            <systemID>3e6476f3-39c8-4b02-8f4a-7adc775e7c70</systemID>
+            <dokumentstatus>Dokumentet er ferdigstilt</dokumentstatus>
+            <opprettetDato>2014-11-22T15:15:10.641+01:00</opprettetDato>
+            <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+            <tilknyttetRegistreringSom>Hoveddokument</tilknyttetRegistreringSom>
+            <tilknyttetDato>2014-11-22T15:15:10.641+01:00</tilknyttetDato>
+            <tilknyttetAv>Birger Ballangrud (baladmin)</tilknyttetAv>
+            <dokumentobjekt>
+              <versjonsnummer>1</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-22T15:15:02.956+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/17d57dc6-52da-4431-a362-b9f968675b1e/1ab70ed9-e511-4c7e-8791-499df8f7b120/a30b6845-71db-4f4d-bd76-a81e5cc7a873/24c3d3df-a7d7-4b50-9a08-efe0aa8c8009.docx</referanseDokumentfil>
+              <sjekksum>6665A72C935C587685E65BDBAD248276BAA0ACC1D6D90C2644F2C5C7C3547C86</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>77541</filstoerrelse>
+            </dokumentobjekt>
+            <dokumentobjekt>
+              <versjonsnummer>2</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>docx</format>
+              <opprettetDato>2014-11-22T15:15:03.619+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/17d57dc6-52da-4431-a362-b9f968675b1e/1ab70ed9-e511-4c7e-8791-499df8f7b120/6c053deb-c55a-464b-810f-6997c9f1df8b/4566d5c3-f44c-4c5b-85fa-325bc5d03774.docx</referanseDokumentfil>
+              <sjekksum>5F0B3D56C95056880BEA4E5F2FDF6EE08165FDEFA7AC248AB7B20C1DBF6C8B79</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>121578</filstoerrelse>
+            </dokumentobjekt>
+            <dokumentobjekt>
+              <versjonsnummer>3</versjonsnummer>
+              <variantformat>Arkivformat</variantformat>
+              <format>pdf</format>
+              <opprettetDato>2014-11-22T15:15:10.641+01:00</opprettetDato>
+              <opprettetAv>Birger Ballangrud (baladmin)</opprettetAv>
+              <referanseDokumentfil>dokumenter/fasit/Avlevering_Kassasjon/Personer/30A00/17d57dc6-52da-4431-a362-b9f968675b1e/1ab70ed9-e511-4c7e-8791-499df8f7b120/df6248d6-4146-4ae5-a3ea-fc61a29efd51/2774fd63-e213-46b6-827c-0e095616e386.pdf</referanseDokumentfil>
+              <sjekksum>99CFA15C1598B841E0D588CDE3A1493549D04E11C7AB9FA66D31EDD5CD7934CD</sjekksum>
+              <sjekksumAlgoritme>SHA-256</sjekksumAlgoritme>
+              <filstoerrelse>83145</filstoerrelse>
+            </dokumentobjekt>
+          </dokumentbeskrivelse>
+          <tittel>Informasjonsbrev om skatteinnberetning</tittel>
+          <forfatter/>
+          <virksomhetsspesifikkeMetadata xsi:type="ns2:virksomhetsspesifikkeMetadata">
+            <ns2:uaktueltKommentar>Informasjonsbrev - Informasjonsbrev om skatteinnberetning</ns2:uaktueltKommentar>
+            <ns2:dokumentMalNavn>Informasjonsbrev - Informasjonsbrev om skatteinnberetning</ns2:dokumentMalNavn>
+            <ns2:dokumentererPlan xsi:nil="true"/>
+            <ns2:dokumentEiere>30A00</ns2:dokumentEiere>
+            <ns2:smsTelefonnummer xsi:nil="true"/>
+            <ns2:smsSendesdato xsi:nil="true"/>
+            <ns2:smsStatus xsi:nil="true"/>
+            <ns2:smsOppdatertIArkiv>false</ns2:smsOppdatertIArkiv>
+          </virksomhetsspesifikkeMetadata>
+          <journalaar>2014</journalaar>
+          <journalsekvensnummer>6</journalsekvensnummer>
+          <journalposttype>Utgående dokument</journalposttype>
+          <journalstatus>Journalført</journalstatus>
+          <dokumentetsDato>2014-11-22T15:15:02.955+01:00</dokumentetsDato>
+          <korrespondansepart>
+            <korrespondanseparttype>Avsender</korrespondanseparttype>
+            <korrespondansepartNavn>Birger Ballangrud (baladmin)</korrespondansepartNavn>
+          </korrespondansepart>
+          <korrespondansepart>
+            <korrespondanseparttype>Mottaker</korrespondanseparttype>
+            <korrespondansepartNavn>30A00</korrespondansepartNavn>
+          </korrespondansepart>
+        </registrering>
+      </mappe>
+    </mappe>
+  </arkivdel>
+</arkiv>

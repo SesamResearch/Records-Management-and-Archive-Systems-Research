@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from utils import *
+from .utils import *
 
 class Entity:
     """ Class to encapsulate XML entities """

@@ -8,9 +8,25 @@ import os, argparse, logging
 import xml.sax
 from xml.sax.handler import feature_namespaces
 
-from config import *
-from utils import *
-from xmlhandler import GeneralXmlHandler
+from .config import *
+from .utils import *
+from .xmlhandler import GeneralXmlHandler
+
+
+def process_xml_file(config, inputfile, logger=None):
+    """ Process a single XML file and output RDF to output dir """
+    if logger:
+        logger.info("Processing XML from " + inputfile)
+        logger.info("Writing RDF into " + config["output_dir"])
+
+    parser = xml.sax.make_parser()
+    
+    # Turn on namespace support
+    parser.setFeature(feature_namespaces, 1)
+    parser.setContentHandler(GeneralXmlHandler(config, logger=logger))
+    
+    # Process the input file
+    parser.parse(inputfile)
 
 
 def main():
@@ -46,10 +62,7 @@ def main():
     logger.info("Processing XML from " + options.inputfile)
     logger.info("Writing RDF into " + config["output_dir"])
 
-    parser = xml.sax.make_parser()
-    parser.setFeature(feature_namespaces, 1)
-    parser.setContentHandler(GeneralXmlHandler(config, logger=logger))
-    parser.parse(open(options.inputfile,"r"))
+    process_xml_file(config, options.inputfile, logger=logger)
 
 
 # Check if called from command line

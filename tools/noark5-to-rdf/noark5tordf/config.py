@@ -3,11 +3,10 @@
 
 import os
 import yaml
-from utils import *
+from .utils import *
 
-
-def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
-    """ Read a config file or return the default config """
+def readConfig(configfile, output_dir=None, input_dir=None, backup_dir=None, interval=None, logfile=None, loglevel=None, env=None, logger=None):
+    """ Read a config file or return a default config """
     if not env:
         env = os.environ.copy()
 
@@ -33,7 +32,7 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
         "logfile" : logfile,
         "loglevel" : loglevel
     }
-        
+
     config_file = configfile.strip()
     if not os.path.isabs(config_file):
         root_folder = getCurrDir()
@@ -52,15 +51,31 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
         if logger:
             logger.warning(msg)
         
-
     default_config.update(config)
+
+    # Command line overrides config
+    if output_dir:
+        default_config["output_dir"] = output_dir
+
+    if input_dir:
+        default_config["input_dir"] = input_dir
+
+    if backup_dir:
+        default_config["backup_dir"] = backup_dir
+
     if not os.path.isabs(default_config["output_dir"]):
         root_folder = getCurrDir()
         default_config["output_dir"] = os.path.join(root_folder, default_config["output_dir"])
 
-    assertDir(default_config["output_dir"])
+    if not os.path.isabs(default_config["input_dir"]):
+        root_folder = getCurrDir()
+        default_config["input_dir"] = os.path.join(root_folder, default_config["input_dir"])
 
-    if not os.path.isabs(default_config["logfile"]):
+    if not os.path.isabs(default_config["backup_dir"]):
+        root_folder = env.get("SESAM_DATA", getCurrDir())
+        default_config["backup_dir"] = os.path.join(root_folder, default_config["backup_dir"])
+
+    if default_config["logfile"] is not None and not os.path.isabs(default_config["logfile"]):
         log_folder = getCurrDir()
         assertDir(log_folder)
         default_config["logfile"] = os.path.join(log_folder, default_config["logfile"])
@@ -68,4 +83,12 @@ def readConfig(configfile, logfile=None, loglevel=None, env=None, logger=None):
     if not default_config["loglevel"]:
         default_config["loglevel"] = loglevel
 
+    if interval is not None and interval > 0:
+        default_config["interval"] = interval
+
+    assertDir(default_config["input_dir"])
+    assertDir(default_config["output_dir"])
+    assertDir(default_config["backup_dir"])
+
     return default_config
+
