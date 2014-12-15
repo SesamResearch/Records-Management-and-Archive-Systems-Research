@@ -375,9 +375,9 @@ class ArkivDel
 end
 
 class Klassifikasjonssystem
-	xsd:string systemID 0 1
-	xsd:string klassifikasjonstype 0 1
-	xsd:string tittel 0 1
+	xsd:string systemID 1 1
+	xsd:string klassifikasjonstype 1 1
+	xsd:string tittel 1 1
 	xsd:string beskrivelse 0 1
 	xsd:string opprettetDato 0 1
 	xsd:string opprettetAv 0 1
@@ -600,7 +600,7 @@ class Dokumentobjekt
 	xsd:string opprettetAv 1 1
 	xsd:string referanseDokumentfil 1 1
 	xsd:string sjekksum 1 1
-	xsd:string sjekksumAlgoritme 1 1
+	xsd:string sjekksumAlgoritem 1 1
 	xsd:string filstoerrelse 1 1
 	ElektroniskSignatur elektroniskSignatur 0 1
     Konvertering konvertering 0 *

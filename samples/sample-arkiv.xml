@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+  <?xml version="1.0"?>
 <arkiv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	   xmlns="http://www.arkivverket.no/standarder/noark5/arkivstruktur">
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns="http://www.arkivverket.no/standarder/noark5/arkivstruktur">
   
   <systemID>635215931314411028203</systemID>
   <tittel>Klare for avlevering</tittel>

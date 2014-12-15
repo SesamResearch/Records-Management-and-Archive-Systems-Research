@@ -1,0 +1,77 @@
+
+
+Graph:
+http://data.bouvet.no/sesam/noark5-input
+
+
+Get all things of type JournalPost
+
+select * where {
+	?s a http://www.arkivverket.no/standarder/noark5/arkivstruktur/Journalpost .
+}
+
+
+Get all things of type saksmappe
+
+
+Validation
+----------
+
+* hierarchy rules
+* required property rules
+ 
+
+RDFCL 
+---
+
+min card constraint
+
+Setup specifically for constraint for <http://www.arkivverket.no/standarder/noark5/arkivstruktur/opprettetDato>
+
+min card constraint
+
+select * where { 
+        { 
+	        select ?instance, count(?value) as ?property_count where {
+                ?instance a <http://www.arkivverket.no/standarder/noark5/arkivstruktur/Journalpost> . 
+				optional {
+                       ?instance <http://www.arkivverket.no/standarder/noark5/arkivstruktur/opprettetAv> ?value . 
+                }
+		} 
+	}
+    filter (?property_count < 1)
+}
+
+Fixed up generic query
+
+prefix rdfcl: <http://data.sesam.io/validation/rdfcl/>
+
+select ?instance ?property_count ?min where {
+  ?constraint rdfcl:mincard ?min .
+  {      
+    select ?instance ?cons as ?constraint count(?value) as ?property_count where 
+    {       
+         ?cons a rdfcl:ClassPropertyConstraint . 
+         ?cons rdfcl:mincard ?min . 
+         ?cons rdfcl:applies-to-type ?topclass . 
+         ?cons rdfcl:applies-to-propertytype ?property .
+         ?allclass rdfs:subClassOf* ?topclass .
+         ?instance a ?allclass .       
+       optional {
+         ?instance ?property ?value . 
+       }
+    } 
+  } filter (?property_count < xsd:integer(?min))
+}
+
+
+max card constraint
+
+
+
+
+
+
+
+
+

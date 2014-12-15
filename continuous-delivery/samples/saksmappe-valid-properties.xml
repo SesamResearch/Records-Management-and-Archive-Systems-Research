@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<arkiv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	   xmlns="http://www.arkivverket.no/standarder/noark5/arkivstruktur">
+  
+  <systemID>400</systemID>
+  <tittel>Arkiv 400</tittel>
+  <opprettetDato>1998-01-01T00:00:00</opprettetDato>
+  <opprettetAv>Sosialsystem Socio</opprettetAv>
+  <avsluttetDato>2013-12-02T14:58:51.4411028+01:00</avsluttetDato>
+  <avsluttetAv>Sosialsystem Socio</avsluttetAv>
+  
+  <arkivskaper>
+    <arkivskaperID>401</arkivskaperID>
+    <arkivskaperNavn>sesam test</arkivskaperNavn>
+  </arkivskaper>
+  
+  <arkivdel>
+    <systemID>402</systemID>
+    <tittel>Arkivdel 402</tittel>
+    <arkivdelstatus>Overlappingsperiode</arkivdelstatus>
+    <opprettetDato>1998-01-01T00:00:00</opprettetDato>
+    <opprettetAv>Sosialsystem Socio</opprettetAv>
+    <avsluttetDato>2013-12-02T14:58:51.4411028+01:00</avsluttetDato>
+    <avsluttetAv>Sosialsystem Socio</avsluttetAv>
+    
+    <klassifikasjonssystem>
+      <systemID>403</systemID>
+      <tittel>KlassifikasjonSystem 403</tittel>
+      <klassifikasjonstype>saks</klassifikasjonstype>
+        
+      <klasse>
+        <systemID>404</systemID>
+        <klasseID>kl104</klasseID>
+        <tittel>Klasse 404</tittel>
+ 
+        <mappe>
+          <systemID>405</systemID>
+          <mappeID>25065542822</mappeID>
+          <tittel>June Brown Mappe 405</tittel>
+          <opprettetDato>1998-01-01T00:00:00</opprettetDato>
+          <opprettetAv>Sosialsystem Socio</opprettetAv>
+          <avsluttetDato>2013-02-15T00:00:00</avsluttetDato>
+          <avsluttetAv>Sosialsystem Socio</avsluttetAv>
+          <mappe xsi:type="saksmappe">
+            <systemID>406</systemID>
+            <mappeID>SOSSAK_884</mappeID>
+            <tittel>Søknad om krisehjelp SaksMappe 406</tittel>
+            <opprettetDato>2013-01-12T00:00:00</opprettetDato>
+            <opprettetAv>Heidi Fjell</opprettetAv>
+            <avsluttetDato>2013-01-12T00:00:00</avsluttetDato>
+            <avsluttetAv>Heidi Fjell</avsluttetAv>
+            <registrering xsi:type="journalpost">
+              <systemID>407</systemID>
+              <opprettetDato>2013-02-19T00:00:00</opprettetDato>
+              <opprettetAv>John Smith</opprettetAv>
+              <arkivertDato>2013-02-19T00:00:00</arkivertDato>
+              <arkivertAv>John Smith</arkivertAv>
+              <registreringsID>13.2.884.2</registreringsID>
+              <tittel>Søknad om krisehjelp JP 407</tittel>
+              <noekkelord>25065542822</noekkelord>
+              <journalposttype>Inngående dokument</journalposttype>
+              <journalstatus>journalfort</journalstatus>
+              <journaldato>2013-01-12</journaldato>
+              <korrespondansepart>
+                <korrespondanseparttype>Avsender</korrespondanseparttype>
+                <korrespondansepartNavn>June Brown</korrespondansepartNavn>
+              </korrespondansepart>
+
+              <dokumentobjekt>
+                <versjonsnummer>1</versjonsnummer>
+                <variantformat>application/apdf</variantformat>
+                <opprettetDato>2013-01-12</opprettetDato>
+                <opprettetAv>John Smith</opprettetAv>
+                <referanseDokumentfil>files/doc-001</referanseDokumentfil>
+                <sjekksum>387783573</sjekksum>
+                <sjekksumAlgoritem>MD5</sjekksumAlgoritem>
+                <filstoerrelse>4556</filstoerrelse>
+              </dokumentobjekt>
+  
+            </registrering>
+            <saksdato>2013-01-12</saksdato>
+            <administrativEnhet>Kommunen</administrativEnhet>
+            <saksansvarlig>John Smith</saksansvarlig>
+            <saksstatus>Avsluttet</saksstatus>
+          </mappe>
+        </mappe>
+      </klasse>
+    </klassifikasjonssystem>  
+  </arkivdel>
+</arkiv>
+

@@ -1,0 +1,25 @@
+
+This collection of documents are test documents for the validation rules of Noark5. The set of rules being tested are a subset of the complete set. Each of the documents aims to test just one rule, although other rules may be found to be valid.
+
+The following files are provided:
+
+* structure-valid.xml : tests the hierarchical structure is correct from arkiv down to documentobject
+
+* structure-invalid.xml : There are many ways to do this but this example has a misplaced registration. 
+
+* journalpost-valid-properties.xml : contains exactly one valid journal post with the required properties
+
+* journalpost-invalid-properties.xml : contains exactly one valid journal post that does not have all required properties
+
+* saksmappe-valid-properties.xml : contains exactly one valid saksmappe with the required properties
+
+* saksmappe-invalid-properties.xml : contains exactly one valid saksmappe that is missing some of the required properties
+
+* saks-registrering-valid-children.xml : a single saksmappe with two child journalpost elements that are both in the correct state
+
+* saks-registrering-invalid-children.xml : a single saksmappe with two child journalpost elements where only one is the correct state
+
+
+
+
+

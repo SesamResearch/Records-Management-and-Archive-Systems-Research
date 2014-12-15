@@ -1,0 +1,34 @@
+# noark5 rmil for continuous delivery
+
+prefix http://www.arkivverket.no/standarder/noark5/arkivstruktur/
+prefix owl http://www.w3.org/owl
+prefix cat http://www.arkivverket.no/standarder/noark5/metadatakatalog/
+
+class Registrering
+	xsd:dateTime opprettetDato 1 1
+	xsd:string opprettetAv  1 1
+end
+    
+class Basisregistrering Registrering
+	xsd:string tittel 1 1
+end
+
+class Journalpost Basisregistrering
+    xsd:dateTime journaldato 1 1
+    xsd:string journalstatus 1 1 [ "journalført", "arkivet" ]
+    Registrering parent 0 1 || 
+
+end
+
+
+class Mappe
+	xsd:string tittel 1 1
+end
+  
+class Saksmappe Mappe
+	xsd:dateTime saksdato 1 1
+	xsd:string   administrativEnhet 1 1	
+	xsd:string   saksansvarlig 1 1
+end
+
+

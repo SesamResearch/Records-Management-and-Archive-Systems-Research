@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><arkiv xmlns="http://www.arkivverket.no/standarder/noark5/arkivstruktur" xmlns:ns2="http://www.helseetaten.oslo.kommune.no/fasitVSM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.helseetaten.oslo.kommune.no/fasitVSM fasit-virksomhetsspesifikkeMetadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<arkiv xmlns="http://www.arkivverket.no/standarder/noark5/arkivstruktur" xmlns:ns2="http://www.helseetaten.oslo.kommune.no/fasitVSM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.helseetaten.oslo.kommune.no/fasitVSM fasit-virksomhetsspesifikkeMetadata.xsd">
   <systemID>ba2f34cb-dac7-4987-b25c-16bd760a9035</systemID>
   <tittel>fasit</tittel>
   <arkivstatus>Opprettet</arkivstatus>
