@@ -48,8 +48,8 @@
             <tittel>Søknad om krisehjelp SaksMappe 506</tittel>
 
             <!-- remove two properties -->
-            <!-- opprettetDato>2013-01-12T00:00:00</opprettetDato>
-            <opprettetAv>Heidi Fjell</opprettetAv -->
+            <opprettetDato>2013-01-12T00:00:00</opprettetDato>
+            <opprettetAv>Heidi Fjell</opprettetAv>
             <avsluttetDato>2013-01-12T00:00:00</avsluttetDato>
             <avsluttetAv>Heidi Fjell</avsluttetAv>
             <registrering xsi:type="journalpost">
@@ -82,8 +82,8 @@
   
             </registrering>
             <saksdato>2013-01-12</saksdato>
-            <administrativEnhet>Kommunen</administrativEnhet>
-            <saksansvarlig>John Smith</saksansvarlig>
+            <!-- administrativEnhet>Kommunen</administrativEnhet>
+            <saksansvarlig>John Smith</saksansvarlig -->
             <saksstatus>Avsluttet</saksstatus>
           </mappe>
         </mappe>
