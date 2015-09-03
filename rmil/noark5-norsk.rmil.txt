@@ -338,8 +338,11 @@ class Arkiv Aggregation
 	xsd:string opprettetAv 1 1
 	xsd:dateTime avsluttetDato 1 1 
 	xsd:string avslutterAv 0 1
-	ArkivSkarper arkivSkaper 1 1
-	Arkiv parent 0 1 
+	ArkivSkarper arkivSkaper 1 *
+	#Arkiv kan ha en eller flere arkivskapere, endret til 1 * 
+	Arkiv parent 0 1
+	#Vil alltid inneholde minst en forekomst av enten arkiv eller arkivdel. <xs:element name="arkiv" type="arkiv" maxOccurs="unbounded"/><xs:element name="arkivdel" type="arkivdel" maxOccurs="unbounded"/>. 0 * riktig? ArkivDel parent mangler?
+	
 end
 
 class ArkivSkaper
@@ -368,10 +371,12 @@ class ArkivDel
 	Kassasjon kassasjon 0 1
 	UtfoertKassasjon utfoertKassasjon 0 1
 	Sletting sletting 0 1
-	Skerming skjerming 0 1
-	Gradering gradering 0 1		  
+	Skjerming skjerming 0 1
+	Gradering gradering 0 1		
 
-	Arkiv parent 0 1 
+
+	Arkiv parent 0 1
+	
 end
 
 class Klassifikasjonssystem
@@ -384,7 +389,7 @@ class Klassifikasjonssystem
 	xsd:string avsluttetDato 0 1
 	xsd:string avsluttetAv 0 1
 
-	ArkivDel parent 1 *	  
+	ArkivDel parent 1 *	 
 	
 	Klasse rootKlasse 0 *	
 end
@@ -396,7 +401,8 @@ class Klasse
 	xsd:string beskrivelse 0 1
 	xsd:string noekkelord 0 *
 	xsd:dateTime opprettetDato 1 1
-	xsd:dateTime opprettetAv 0 1
+	xsd:dateTime opprettetAv 1 1
+	#endret til 1 1 forekomst
 	xsd:dateTime avsluttetDato 0 1
 	xsd:string avsluttetAv 0 1
 	
@@ -414,10 +420,12 @@ class Mappe
 	xsd:string tittel 1 1
 	xsd:string offentligTittel 0 1
 	xsd:string beskrivelse 0 1
-	xsd:string noekkelord 0 1
+	xsd:string noekkelord 0 *
+	#forandret til 0 *
 	DokumentMedium dokumentmedium 0 1
 	xsd:string oppbevaringssted 0 *
-	xsd:dateTime opprettetDato 0 *
+	xsd:dateTime opprettetDato 1 1
+	#forandret til 1 1
 	xsd:string opprettetAv 1 1
 	xsd:dateTime avsluttetDato 1 1
 	xsd:string avsluttetAv 1 1
@@ -430,10 +438,13 @@ class Mappe
 	Klasse klasse 0 1
 	Mappe parentMappe 0 1
 	ArkivDel parentArkivDel 0 1
+	#0 * ?
+	#skrives ArkivDel parent?
 end
 
 class Registrering
-	xsd:string systemID 0 1
+	xsd:string systemID 1 1
+	#endret til 1 1
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv  1 1
 	xsd:dateTime arkivertDato 1 1
@@ -463,6 +474,7 @@ end
 class Sakspart
 	xsd:string sakspartID 0 1
 	xsd:string sakspartNavn 0 1
+	#xsd 1 1
 	xsd:string sakspartRolle 1 1
 	xsd:string postadresse 0 *
 	xsd:string postnummer 0 1
@@ -471,13 +483,16 @@ class Sakspart
 	xsd:string epostadresse 0 1
 	xsd:string telefonnummer 0 *
 	xsd:string kontaktperson 0 *
+	xsd:string virksomhetsspesifikkeMetadata 0 1
+	#ny
 	Saksmappe saksmappe 1 1	
 end
 
 class Moetemappe Mappe				
 	xsd:string moetenummer 1 1
 	xsd:string utvalg 1 1
-	xsd:dateTime moetedato
+	xsd:dateTime moetedato 1 1
+	#relasjon ny
 	xsd:string moetested 0 1
 	xsd:string referanseForrigeMoete 0 1
 	xsd:string referanseNesteMoete 0 1
@@ -497,7 +512,9 @@ class BasisRegistrering Registrering
 	xsd:string noekkelord 0 *
 	xsd:string forfatter 0 *
 	DokumentMedium dokumentmedium 0 1
-	xsd:string oppbevaringssted 0 *					  
+	xsd:string oppbevaringssted 0 *	
+	xsd:string virksomhetsspesifikkeMetadata 0 1
+	#ny				  
 	Merknad merknad 0 *
 	Kryssreferanse kryssreferanse 0 *
 end
@@ -528,15 +545,18 @@ class Korrespondansepart
 	KorrespondansePartType korrespondanseparttype 1 1
 	xsd:string korrespondansepartNavn 1 1
     xsd:string postadresse 0 1
+    #xsd 0 *
 	xsd:string postnummer 0 1
     xsd:string poststed 0 1
     xsd:string land 0 1
     xsd:string epostadresse 0 1
     xsd:string telefonnummer 0 1
+    #xsd 0 *
     xsd:string kontaktperson 0 1
     xsd:string administrativEnhet 0 1
     xsd:string saksbehandler 0 1	
-	JournalPost journalPost 1 1
+	JournalPost journalPost 1 *
+	#endret til 1 *
 end  
 
 class Avskrivning
@@ -560,7 +580,8 @@ class Moeteregistrering BasisRegistrering
 	xsd:string moetesakstype 1 1
 	xsd:string moeteregistreringsstatus 0 1
 	xsd:string administrativEnhet 1 1
-	xsd:string saksbehandler
+	xsd:string saksbehandler 1 1
+	#lagt til relasjon
 	xsd:string referanseTilMoeteregistrering 0 *
 	xsd:string referanseFraMoeteregistrering 0 *
 end
@@ -626,6 +647,7 @@ end
 class Merknad
     xsd:string merknadstekst 1 1
     xsd:string merknadstype 1 1
+    #xsd 0 1
     xsd:string merknadsdato 1 1
     xsd:string merknadRegistrertAv 1 1
 end
@@ -653,6 +675,7 @@ class Skjerming
     xsd:string skjermingshjemmel 1 1
     xsd:string skjermingMetadata 0 *
     SkjermingDokument skjermingDokument 0 *
+    #xsd 0 1
     xsd:string skjermingsvarighet 0 1
     xsd:string skjermingOpphoererDato 0 1
 end
@@ -673,6 +696,7 @@ class Presedens
 	xsd:string beskrivelse 0 1	
 	xsd:string presedensHjemmel 0 1
 	xsd:string rettskildefaktor 0 1
+	#xsd 1 1
 	xsd:dateTime presedensGodkjentDato 0 1
 	xsd:string presedensGodkjentAv 0 1
 	xsd:dateTime avsluttetDato 0 1
