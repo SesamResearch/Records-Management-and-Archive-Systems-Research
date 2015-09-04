@@ -339,9 +339,8 @@ class Arkiv Aggregation
 	xsd:dateTime avsluttetDato 1 1 
 	xsd:string avslutterAv 0 1
 	ArkivSkarper arkivSkaper 1 *
-	#Arkiv kan ha en eller flere arkivskapere, endret til 1 * 
+	#Arkiv kan ha en eller flere arkivskapere, endret til 1 * som i xsd.
 	Arkiv parent 0 1
-	#Vil alltid inneholde minst en forekomst av enten arkiv eller arkivdel. <xs:element name="arkiv" type="arkiv" maxOccurs="unbounded"/><xs:element name="arkivdel" type="arkivdel" maxOccurs="unbounded"/>. 0 * riktig? ArkivDel parent mangler?
 	
 end
 
@@ -361,7 +360,8 @@ class ArkivDel
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv 1 1
 	xsd:dateTime avsluttetDato 1 1 
-	xsd:string avslutterAv 0 1
+	xsd:string avsluttetAv 1 1
+	#xsd 1 1
 	
 	xsd:dateTime arkivperiodeStartDato 0 1
 	xsd:dateTime arkivperiodeSluttDato 0 1
@@ -376,16 +376,20 @@ class ArkivDel
 
 
 	Arkiv parent 0 1
+	# xsd 0 *?
 	
 end
 
 class Klassifikasjonssystem
 	xsd:string systemID 1 1
-	xsd:string klassifikasjonstype 1 1
+	xsd:string klassifikasjonstype 0 1
+	#endret til 0 1 som i xsd
 	xsd:string tittel 1 1
 	xsd:string beskrivelse 0 1
 	xsd:string opprettetDato 0 1
+	#xsd 1 1
 	xsd:string opprettetAv 0 1
+	#xsd 1 1
 	xsd:string avsluttetDato 0 1
 	xsd:string avsluttetAv 0 1
 
@@ -402,7 +406,7 @@ class Klasse
 	xsd:string noekkelord 0 *
 	xsd:dateTime opprettetDato 1 1
 	xsd:dateTime opprettetAv 1 1
-	#endret til 1 1 forekomst
+	#endret til 1 1 som i xsd
 	xsd:dateTime avsluttetDato 0 1
 	xsd:string avsluttetAv 0 1
 	
@@ -415,21 +419,24 @@ class Klasse
 end
 
 class Mappe
+#mapper kan utgå i enkelte fagsystemer, obligatoriske metadata utgår da
 	xsd:string systemID 1 1
 	xsd:string mappeID 1 1
 	xsd:string tittel 1 1
 	xsd:string offentligTittel 0 1
 	xsd:string beskrivelse 0 1
 	xsd:string noekkelord 0 *
-	#forandret til 0 *
+	#forandret til 0 * som i xsd
 	DokumentMedium dokumentmedium 0 1
 	xsd:string oppbevaringssted 0 *
 	xsd:dateTime opprettetDato 1 1
-	#forandret til 1 1
+	#forandret til 1 1 som i xsd
 	xsd:string opprettetAv 1 1
 	xsd:dateTime avsluttetDato 1 1
 	xsd:string avsluttetAv 1 1
 	xsd:string referanseArkivdel 0 *
+	xsd:string virksomhetsspesifikkeMetadata 0 1
+	#ny
 	Kryssreferanse kryssreferanse 0 *
 	Merknad merknad 0 *
 	Kassasjon kassasjon 0 1
@@ -438,13 +445,11 @@ class Mappe
 	Klasse klasse 0 1
 	Mappe parentMappe 0 1
 	ArkivDel parentArkivDel 0 1
-	#0 * ?
-	#skrives ArkivDel parent?
 end
 
 class Registrering
 	xsd:string systemID 1 1
-	#endret til 1 1
+	#endret til 1 1 som i xsd
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv  1 1
 	xsd:dateTime arkivertDato 1 1
@@ -459,23 +464,33 @@ end
 
 class Saksmappe Mappe
 	xsd:string saksaar 0 1
+	#obligatorisk kun for saksarkiv
 	xsd:string sakssekvensnummer 0 1
+	#obligatorisk kun for saksarkiv
 	xsd:dateTime saksdato 1 1
-	xsd:string administrativEnhet 1 1	
+	#obligatorisk kun for saksarkiv
+	xsd:string administrativEnhet 1 1
+	#obligatorisk kun for saksarkiv	
 	xsd:string saksansvarlig 1 1
+	#obligatorisk kun for saksarkiv
 	xsd:string journalenhet 0 1
 	SaksStatus saksstatus 0 1
+	#obligatorisk kun for saksarkiv
 	xsd:dateTime utlaantDato 0 1
+	#gjelde fysisk arkiv
 	xsd:string utlaantTil 0 1
+	#gjelder fysisk arkiv
 	xsd:string referanseSekundaerKlassifikasjon 0 *	
 	Presedens presedens 0 *	
 end
 
 class Sakspart
+#noark indre kjerne
 	xsd:string sakspartID 0 1
 	xsd:string sakspartNavn 0 1
-	#xsd 1 1
+	#xsd 1 1 obigatorisk dersom sakspart brukes
 	xsd:string sakspartRolle 1 1
+	#obligatorisk dersom sakspart brukes
 	xsd:string postadresse 0 *
 	xsd:string postnummer 0 1
 	xsd:string poststed 0 1
@@ -483,6 +498,7 @@ class Sakspart
 	xsd:string epostadresse 0 1
 	xsd:string telefonnummer 0 *
 	xsd:string kontaktperson 0 *
+	#xsd 0 1 
 	xsd:string virksomhetsspesifikkeMetadata 0 1
 	#ny
 	Saksmappe saksmappe 1 1	
@@ -492,7 +508,7 @@ class Moetemappe Mappe
 	xsd:string moetenummer 1 1
 	xsd:string utvalg 1 1
 	xsd:dateTime moetedato 1 1
-	#relasjon ny
+	#endret til 1 1 som i xsd
 	xsd:string moetested 0 1
 	xsd:string referanseForrigeMoete 0 1
 	xsd:string referanseNesteMoete 0 1
@@ -508,11 +524,13 @@ class BasisRegistrering Registrering
 	xsd:string registreringsID  1 1
 	xsd:string tittel 1 1
 	xsd:string offentligTittel 0 1
+	#Obligatorisk for deponering/avlevering dersom ord i tittelen skal skjermes.
 	xsd:string beskrivelse 0 1
 	xsd:string noekkelord 0 *
 	xsd:string forfatter 0 *
 	DokumentMedium dokumentmedium 0 1
 	xsd:string oppbevaringssted 0 *	
+	#ved fysisk arkiv
 	xsd:string virksomhetsspesifikkeMetadata 0 1
 	#ny				  
 	Merknad merknad 0 *
@@ -521,19 +539,30 @@ end
 
 class JournalPost BasisRegistrering
 	xsd:string journalaar 0 1
+	#obligatorisk for saksarkiv
     xsd:string journalsekvensnummer 0 1
+    #obligatorisk for saksarkiv
     xsd:string journalpostnummer 0 1
+    #obligatorisk for saksarkiv
     JournalPostType journalposttype 1 1
+    #obligatorisk for saksarkiv og fagsystemer med korrespondansedokumenter
 	JournalStatus journalstatus 1 1 
+	#obligatorisk for saksarkiv
     xsd:dateTime journaldato 1 1
+    #obligatorisk for saksarkiv
     xsd:dateTime dokumentetsDato 0 1
     xsd:dateTime mottattDato 0 1
+    #obligatorisk for saksarkiv og fagsystemer med korrespondansedokumenter
     xsd:dateTime sendtDato 0 1
+    #obligatorisk for saksarkiv og fagsystemer med korrespondansedokumenter
     xsd:dateTime forfallsdato 0 1
     xsd:dateTime offentlighetsvurdertDato 0 1
     xsd:string antallVedlegg 0 1
+    #ved fysisk arkiv
     xsd:dateTime utlaantDato 0 1
+	#ved fysisk arkiv
     xsd:string utlaantTil 0 1
+    #ved fysisk arkiv
     xsd:string journalenhet 0 1	
 	Avskrivning avskrivning 0 *	
 	Dokumentflyt dokumentflyt 0 *
@@ -556,22 +585,32 @@ class Korrespondansepart
     xsd:string administrativEnhet 0 1
     xsd:string saksbehandler 0 1	
 	JournalPost journalPost 1 *
-	#endret til 1 *
+	#endre til 1 *?
 end  
 
 class Avskrivning
+#noark 5 indre kjerne
 	xsd:dateTime avskrivningsdato 1 1
+	#obligatorisk når avskriving utført
     xsd:string avskrevetAv 1 1
+    #obligatorisk når avskriving utført
     Avskrivningsmaate avskrivningsmaate 1 1
+    #obligatorisk når avskriving utført
     xsd:string referanseAvskrivesAvJournalpost 0 1
 end  
   
 class Dokumentflyt
+#relevant for avlevering?
 	xsd:string flytTil 1 1
+	#obligatorisk dersom dokumenter sendes på flyt
     xsd:string flytFra 1 1
+    #obligatorisk dersom dokumenter sendes på flyt
     xsd:dateTime flytMottattDato 1 1
+    #obligatorisk dersom dokumenter sendes på flyt
     xsd:dateTime flytSendtDato 1 1
+    #obligatorisk dersom dokumenter sendes på flyt
     xsd:string flytStatus 1 1
+    #obligatorisk dersom dokumenter sendes på flyt
     xsd:string flytMerknad 0 1	
 end
 
@@ -590,7 +629,9 @@ class DokumentBeskrivelse
 	xsd:string systemID 1 1
 	xsd:string dokumenttype 1 1
 	DokumentStatus dokumentstatus 1 1
+	#obligatorisk for saksarkiv
 	xsd:string tittel 1 1
+	#obligatorisk for saksarkiv
 	xsd:string beskrivelse 0 1
 	xsd:string forfatter 0 *
 	xsd:dateTime opprettetDato 1 1
@@ -615,7 +656,8 @@ end
 class Dokumentobjekt
 	xsd:string versjonsnummer 1 1
 	Variantformat variantformat 1 1
-	xsd:string format 0 1
+	xsd:string format 1 1
+	#endret til 1 1 som i xsd
 	xsd:string formatDetaljer 0 1
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv 1 1
@@ -689,14 +731,20 @@ class Gradering
 end
 
 class Presedens
+#indre kjerne
 	xsd:dateTime presedensDato 1 1
+	#obligatorisk når presedens inngår
 	xsd:dateTime opprettetDato 1 1
+	#obligatorisk når presedens inngår
 	xsd:string opprettetAv 1 1
+	#obligatorisk når presedens inngår
 	xsd:string tittel 1 1
+	#obligatorisk når presedens inngår
 	xsd:string beskrivelse 0 1	
 	xsd:string presedensHjemmel 0 1
 	xsd:string rettskildefaktor 0 1
 	#xsd 1 1
+	#obligatorisk når presedens inngår
 	xsd:dateTime presedensGodkjentDato 0 1
 	xsd:string presedensGodkjentAv 0 1
 	xsd:dateTime avsluttetDato 0 1
@@ -710,3 +758,5 @@ class ElektroniskSignatur
     xsd:dateTime verifisertDato 1 1
     xsd:string verifisertAv 1 1
 end
+
+#Saksbehandler mangler?
