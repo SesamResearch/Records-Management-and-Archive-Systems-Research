@@ -29,6 +29,7 @@ instance variantformat:produksjonsformat Variantformat
 	tittel "Produksjonsformat"
 end
 
+hjkl
 instance variantformat:arkivformat Variantformat
 	tittel "Arkivformat"
 end
