@@ -1,25 +1,22 @@
-
 prefix http://www.arkivverket.no/standarder/noark5/arkivstruktur/
 prefix owl http://www.w3.org/owl
 prefix cat http://www.arkivverket.no/standarder/noark5/metadatakatalog/
 
 # vokabular
-prefix arkivstatus http://www.arkivvet.no/standarder/noark5/vokabular/arkivstatus/
-prefix arkivdelstatus http://www.arkivvet.no/standarder/noark5/vokabular/arkivdelstatus/
-prefix saksstatus http://www.arkivvet.no/standarder/noark5/vokabular/saksstatus/
-prefix journalstatus http://www.arkivvet.no/standarder/noark5/vokabular/journalstatus/
-prefix dokumentstatus http://www.arkivvet.no/standarder/noark5/vokabular/dokumentstatus/
-prefix presedensstatus http://www.arkivvet.no/standarder/noark5/vokabular/presedensstatus/
-prefix journalposttype http://www.arkivvet.no/standarder/noark5/vokabular/journalposttype/
-prefix korrespondanseparttype http://www.arkivvet.no/standarder/noark5/vokabular/korrespondanseparttype/
-prefix slettingstype http://www.arkivvet.no/standarder/noark5/vokabular/slettingstype/
-prefix dokumentmedium http://www.arkivvet.no/standarder/noark5/vokabular/dokumentmedium/
-prefix kassasjonsvedtak http://www.arkivvet.no/standarder/noark5/vokabular/kassasjonsvedtak/
-prefix skjermingdokument http://www.arkivvet.no/standarder/noark5/vokabular/skjermingdokument/
-prefix graderingtype http://www.arkivvet.no/standarder/noark5/vokabular/graderingtype/
-prefix elektronisksignaturverifisert http://www.arkivvet.no/standarder/noark5/vokabular/elektronisksignaturverifisert/
-prefix avskrivningsmaate http://www.arkivvet.no/standarder/noark5/vokabular/avskrivningsmaate/
-prefix variantformat http://www.arkivvet.no/standarder/noark5/vokabular/variantformat/
+prefix arkivstatus http://www.arkivverket.no/standarder/noark5/vokabular/arkivstatus/
+prefix arkivdelstatus http://www.arkivverket.no/standarder/noark5/vokabular/arkivdelstatus/
+prefix saksstatus http://www.arkivverket.no/standarder/noark5/vokabular/saksstatus/
+prefix journalstatus http://www.arkivverket.no/standarder/noark5/vokabular/journalstatus/
+prefix dokumentstatus http://www.arkivverket.no/standarder/noark5/vokabular/dokumentstatus/
+prefix presedensstatus http://www.arkivverket.no/standarder/noark5/vokabular/presedensstatus/
+prefix journalposttype http://www.arkivverket.no/standarder/noark5/vokabular/journalposttype/
+prefix slettingstype http://www.arkivverket.no/standarder/noark5/vokabular/slettingstype/
+prefix dokumentmedium http://www.arkivverket.no/standarder/noark5/vokabular/dokumentmedium/
+prefix kassasjonsvedtak http://www.arkivverket.no/standarder/noark5/vokabular/kassasjonsvedtak/
+prefix skjermingdokument http://www.arkivverket.no/standarder/noark5/vokabular/skjermingdokument/
+prefix graderingtype http://www.arkivverket.no/standarder/noark5/vokabular/graderingtype/
+prefix elektronisksignaturverifisert http://www.arkivverket.no/standarder/noark5/vokabular/elektronisksignaturverifisert/
+prefix variantformat http://www.arkivverket.no/standarder/noark5/vokabular/variantformat/
 
 class Variantformat
 	xsd:string tittel 1 1	
@@ -35,30 +32,6 @@ end
 
 instance variantformat:Dokumenthvordeleravinnholdeterskjermet Variantformat
 	tittel "Dokument hvor deler av innholdet er skjermet"
-end
-
-class Avskrivningsmaate
-	xsd:string tittel 1 1	
-end
-
-instance avskrivningsmaate:brev Avskrivningsmaate
-	tittel "Besvart med brev"
-end
-
-instance avskrivningsmaate:epost Avskrivningsmaate
-	tittel "Besvart med e-post"
-end
-
-instance avskrivningsmaate:telefon Avskrivningsmaate
-	tittel "Besvart på telefon"
-end
-
-instance avskrivningsmaate:etterretning Avskrivningsmaate
-	tittel "Tatt til etterretning"
-end
-
-instance avskrivningsmaate:orientering Avskrivningsmaate
-	tittel "Tatt til orientering"
 end
 
 class ElektroniskSignaturVerifisert
@@ -118,7 +91,6 @@ instance skjermingdokument:skjermingavdeleravdokumentet SkjermingDokument
 	tittel "Skjerming av deler av dokumentet"
 end
 
-
 class Kassasjonsvedtak
 	xsd:string tittel 1 1	
 end
@@ -140,7 +112,7 @@ class DokumentMedium
 end
 
 instance dokumentmedium:fysiskmedium DokumentMedium
-	tittel "Fysisk medium"
+	tittel "Fysisk arkiv"
 end
 
 instance dokumentmedium:elektroniskarkiv DokumentMedium
@@ -170,34 +142,6 @@ end
 
 instance slettingstype:slettingavheleinnholdetiarkivdelen SlettingsType
 	tittel "Sletting av hele innholdet i arkivdelen"
-end
-
-class KorrespondansePartType
-	xsd:string tittel 1 1	
-end
-
-instance korrespondanseparttype:avsender KorrespondansePartType
-	tittel "Avsender"
-end
-
-instance korrespondanseparttype:mottaker KorrespondansePartType
-	tittel "Mottaker"
-end
-
-instance korrespondanseparttype:kopimottaker KorrespondansePartType
-	tittel "Kopimottaker"
-end
-
-instance korrespondanseparttype:gruppemottaker KorrespondansePartType
-	tittel "Gruppemottaker"
-end
-
-instance korrespondanseparttype:internavsender KorrespondansePartType
-	tittel "Intern avsender"
-end
-
-instance korrespondanseparttype:internmottaker KorrespondansePartType
-	tittel "Intern mottaker"
 end
 
 class JournalPostType
@@ -338,8 +282,7 @@ class Arkiv Aggregation
 	xsd:string opprettetAv 1 1
 	xsd:dateTime avsluttetDato 0 1 
 	xsd:string avsluttetAv 0 1
-	ArkivSkarper arkivSkaper 1 *
-	# changed to 1 * like in xsd
+	ArkivSkaper arkivSkaper 1 *
 	Arkiv parent 0 1
 	
 end
@@ -362,10 +305,10 @@ class ArkivDel
 	xsd:dateTime avsluttetDato 0 1 
 	xsd:string avsluttetAv 0 1
 	
-	xsd:dateTime arkivperiodeStartDato 0 1
-	xsd:dateTime arkivperiodeSluttDato 0 1
+	xsd:date arkivperiodeStartDato 0 1
+	xsd:date arkivperiodeSluttDato 0 1
 	xsd:string referanseForloeper 0 1
-    xsd:string referanseArvtaker 0 1
+    	xsd:string referanseArvtaker 0 1
 	
 	Kassasjon kassasjon 0 1
 	UtfoertKassasjon utfoertKassasjon 0 1
@@ -377,25 +320,24 @@ class ArkivDel
 	
 end
 
-class Klassifikasjonssystem
+class KlasseContainer
+
+end
+
+class Klassifikasjonssystem KlasseContainer
 	xsd:string systemID 1 1
 	xsd:string klassifikasjonstype 0 1
-	# changed to 0 1 like in xsd
 	xsd:string tittel 1 1
 	xsd:string beskrivelse 0 1
 	xsd:dateTime opprettetDato 1 1
-	# changed to xsd:dateTime and 1 1, like in xsd
 	xsd:string opprettetAv 0 1 
 	xsd:dateTime avsluttetDato 0 1
-	# changed to xsd:dateTime
 	xsd:string avsluttetAv 0 1
 
-	ArkivDel parent 1 *	 
-	
-	Klasse rootKlasse 0 *	
+	ArkivDel parent 1 *
 end
 
-class Klasse
+class Klasse KlasseContainer MappeContainer
 	xsd:string systemID 1 1
 	xsd:string klasseID 1 1
 	xsd:string tittel 1 1
@@ -403,48 +345,44 @@ class Klasse
 	xsd:string noekkelord 0 *
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv 1 1
-	# changed to 1 1 and xsd:string like in xsd
 	xsd:dateTime avsluttetDato 0 1
 	xsd:string avsluttetAv 0 1
-	
-	Kryssreferanse kryssreferanse 0 *
-	Kassasjon Kassasjon 0 1
+	Kassasjon kassasjon 0 1
 	Skjerming skjerming 0 1
 	Gradering gradering 0 1
 	
-	Klasse parent 0 1
+	KlasseContainer parent 1 1
 end
 
-class Mappe
+class MappeContainer
+
+end
+
+class Mappe MappeContainer KanKryssrefereres
 	xsd:string systemID 1 1
 	xsd:string mappeID 1 1
 	xsd:string tittel 1 1
 	xsd:string offentligTittel 0 1
 	xsd:string beskrivelse 0 1
 	xsd:string noekkelord 0 *
-	# changed to 0 * like in xsd
 	DokumentMedium dokumentmedium 0 1
 	xsd:string oppbevaringssted 0 *
 	xsd:dateTime opprettetDato 1 1
-	# changed to 1 1 like in xsd
 	xsd:string opprettetAv 1 1
 	xsd:dateTime avsluttetDato 0 1
 	xsd:string avsluttetAv 0 1
 	xsd:string referanseArkivdel 0 *
 	xsd:string virksomhetsspesifikkeMetadata 0 1
-	Kryssreferanse kryssreferanse 0 *
 	Merknad merknad 0 *
 	Kassasjon kassasjon 0 1
 	Skjerming skjerming 0 1
 	Gradering gradering 0 1
-	Klasse klasse 0 1
-	Mappe parentMappe 0 1
-	ArkivDel parentArkivDel 0 1
+	
+	MappeContainer parent 1 1
 end
 
 class Registrering
 	xsd:string systemID 1 1
-	#changed to 1 1 like in xsd
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv  1 1
 	xsd:dateTime arkivertDato 0 1
@@ -453,23 +391,23 @@ class Registrering
 	Kassasjon kassasjon 0 1
 	Skjerming skjerming 0 1
 	Gradering gradering 0 1	
-	Mappe parentMappe 1 1
-	ArkivDel parentArkivDel 0 1
+	Mappe parent 1 1
+
 end
 
 class Saksmappe Mappe
-	xsd:string saksaar 1 1
-	xsd:string sakssekvensnummer 1 1
-	xsd:dateTime saksdato 1 1
+	xsd:integer saksaar 0 1
+	xsd:integer sakssekvensnummer 0 1
+	xsd:date saksdato 1 1
 	xsd:string administrativEnhet 1 1
 	xsd:string saksansvarlig 1 1
 	xsd:string journalenhet 0 1
 	SaksStatus saksstatus 1 1
-	# changed to 1 1 like in xsd
-	xsd:dateTime utlaantDato 0 1
+	xsd:date utlaantDato 0 1
 	xsd:string utlaantTil 0 1
 	xsd:string referanseSekundaerKlassifikasjon 0 *	
 	Presedens presedens 0 *	
+	Sakspart sakspart 0 *
 end
 
 class Sakspart
@@ -484,14 +422,13 @@ class Sakspart
 	xsd:string telefonnummer 0 *
 	xsd:string kontaktperson 0 *
 	xsd:string virksomhetsspesifikkeMetadata 0 1
-	Saksmappe saksmappe 1 1	
+
 end
 
 class Moetemappe Mappe				
 	xsd:string moetenummer 1 1
 	xsd:string utvalg 1 1
-	xsd:dateTime moetedato 1 1
-	# changed to 1 1 like in xsd
+	xsd:date moetedato 1 1
 	xsd:string moetested 0 1
 	xsd:string referanseForrigeMoete 0 1
 	xsd:string referanseNesteMoete 0 1
@@ -503,7 +440,7 @@ class Moetedeltaker
 	xsd:string moetedeltakerFunksjon 0 1
 end  
   
-class BasisRegistrering Registrering
+class Basisregistrering Registrering KanKryssrefereres
 	xsd:string registreringsID  1 1
 	xsd:string tittel 1 1
 	xsd:string offentligTittel 0 1
@@ -514,72 +451,67 @@ class BasisRegistrering Registrering
 	xsd:string oppbevaringssted 0 *	
 	xsd:string virksomhetsspesifikkeMetadata 0 1
 	Merknad merknad 0 *
-	Kryssreferanse kryssreferanse 0 *
 end
 
-class JournalPost BasisRegistrering
-	xsd:string journalaar 1 1
-    xsd:string journalsekvensnummer 1 1
-    xsd:string journalpostnummer 0 1
-    JournalPostType journalposttype 1 1
+class Journalpost Basisregistrering
+	xsd:integer journalaar 0 1
+    	xsd:integer journalsekvensnummer 0 1
+        xsd:string journalpostnummer 0 1
+    	JournalPostType journalposttype 1 1
 	JournalStatus journalstatus 1 1 
-    xsd:dateTime journaldato 1 1
-    xsd:dateTime dokumentetsDato 0 1
-    xsd:dateTime mottattDato 0 1
-    #either
-    xsd:dateTime sendtDato 0 1
-    #or
-    xsd:dateTime forfallsdato 0 1
-    xsd:dateTime offentlighetsvurdertDato 0 1
-    xsd:string antallVedlegg 0 1
-    xsd:dateTime utlaantDato 0 1
-    xsd:string utlaantTil 0 1
-    xsd:string journalenhet 0 1	
+    	xsd:date journaldato 1 1
+    	xsd:date dokumentetsDato 0 1
+    	xsd:date sendtMottattDato 1 1
+    	xsd:date forfallsdato 0 1
+    	xsd:date offentlighetsvurdertDato 0 1
+    	xsd:integer antallVedlegg 0 1
+    	xsd:date utlaantDato 0 1
+    	xsd:string utlaantTil 0 1
+    	xsd:string journalenhet 0 1	
 	Avskrivning avskrivning 0 *	
 	Dokumentflyt dokumentflyt 0 *
 	Presedens presedens 0 *
 	ElektroniskSignatur elektroniskSignatur 0 1
+	Korrespondansepart korrespondansepart 1 *
 end
     
 class Korrespondansepart
-	KorrespondansePartType korrespondanseparttype 0 1
-	xsd:string korrespondansepartNavn 0 1
-    xsd:string postadresse 0 1
+	xsd:string korrespondanseparttype 1 1
+	xsd:string korrespondansepartNavn 1 1
+    	xsd:string postadresse 0 1
 	xsd:string postnummer 0 1
-    xsd:string poststed 0 1
-    xsd:string land 0 1
-    xsd:string epostadresse 0 1
-    xsd:string telefonnummer 0 *
-    # changed to 0 * like in xsd
-    xsd:string kontaktperson 0 1
-    xsd:string administrativEnhet 0 1
-    xsd:string saksbehandler 0 1	
-	JournalPost journalPost 1 *
+	xsd:string poststed 0 1
+    	xsd:string land 0 1
+    	xsd:string epostadresse 0 1
+    	xsd:string telefonnummer 0 *
+    	xsd:string kontaktperson 0 1
+    	xsd:string administrativEnhet 0 1
+    	xsd:string saksbehandler 0 1	
+	
 end  
 
 class Avskrivning
 	xsd:dateTime avskrivningsdato 1 1
-    xsd:string avskrevetAv 1 1
-    Avskrivningsmaate avskrivningsmaate 1 1
-    xsd:string referanseAvskrivesAvJournalpost 0 1
+    	xsd:string avskrevetAv 1 1
+    	xsd:string avskrivningsmaate 1 1
+    	xsd:string referanseAvskrivesAvJournalpost 0 1
 end  
   
 class Dokumentflyt
 	xsd:string flytTil 1 1
-    xsd:string flytFra 1 1
-    xsd:dateTime flytMottattDato 1 1
-    xsd:dateTime flytSendtDato 1 1
-    xsd:string flytStatus 1 1
-    xsd:string flytMerknad 0 1	
+    	xsd:string flytFra 1 1
+    	xsd:dateTime flytMottattDato 1 1
+    	xsd:dateTime flytSendtDato 1 1
+    	xsd:string flytStatus 1 1
+    	xsd:string flytMerknad 0 1	
 end
 
-class Moeteregistrering BasisRegistrering
+class Moeteregistrering Basisregistrering
 	xsd:string moeteregistreringstype 1 1
 	xsd:string moetesakstype 1 1
 	xsd:string moeteregistreringsstatus 0 1
 	xsd:string administrativEnhet 1 1
 	xsd:string saksbehandler 1 1
-	# changed to 1 1 like in xsd
 	xsd:string referanseTilMoeteregistrering 0 *
 	xsd:string referanseFraMoeteregistrering 0 *
 end
@@ -597,66 +529,78 @@ class DokumentBeskrivelse
 	xsd:string oppbevaringssted 0 1
 	xsd:string referanseArkivdel 0 *
 	xsd:string tilknyttetRegistreringSom 1 1 
-	xsd:string dokumentnummer 1 1
+	xsd:integer dokumentnummer 1 1
 	xsd:dateTime tilknyttetDato 1 1
 	xsd:string tilknyttetAv 1 1	
-	Registrering registrering 1 *		  
 	Merknad merknad 0 *
 	Kassasjon kassasjon 0 1
 	UtfoertKassasjon utfoertKassasjon 0 1
 	Sletting sletting 0 1
 	Skjerming skjerming 0 1
 	Gradering gradering 0 1
-	ElektroniskSignatur elektroniskSignatur 0 1		  
+	ElektroniskSignatur elektroniskSignatur 0 1
+	Registrering parent 1 *	
+
 end
 
 class Dokumentobjekt
-	xsd:string versjonsnummer 1 1
+	xsd:integer versjonsnummer 1 1
 	Variantformat variantformat 1 1
 	xsd:string format 1 1
-	# changed to 1 1 like in xsd
 	xsd:string formatDetaljer 0 1
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv 1 1
 	xsd:string referanseDokumentfil 1 1
-	xsd:string sjekksum 1 1
-	xsd:string sjekksumAlgoritme 1 1
-	# changed from Aloritem to Algoritme
+	xsd:string sjekksum 0 1
+	xsd:string sjekksumAlgoritme 0 1
 	xsd:string filstoerrelse 1 1
 	ElektroniskSignatur elektroniskSignatur 0 1
-    Konvertering konvertering 0 *
-	DokumentBeskrivelse dokumentBeskrivelse 0 1
-	Registrering registrering 0 1	
+    	Konvertering konvertering 0 *
+	DokumentBeskrivelse parent 1 1
+	
 end  
 
 class Konvertering	
 	xsd:dateTime konvertertDato 1 1
-    xsd:string konvertertAv 1 1
-    xsd:string konvertertFraFormat 1 1
-    xsd:string konvertertTilFormat 1 1
-    xsd:string konverteringsverktoey 1 1
-    xsd:string konverteringskommentar 1 1      
+    	xsd:string konvertertAv 1 1
+    	xsd:string konvertertFraFormat 1 1
+    	xsd:string konvertertTilFormat 1 1
+    	xsd:string konverteringsverktoey 0 1
+    	xsd:string konverteringskommentar 0 1      
 end  
 
 class Kryssreferanse
-    xsd:string referanseTilKlasse 0 1 
-    xsd:string referanseTilMappe 0 1
-    xsd:string referanseTilRegistrering 0 1
+  
+end
+
+class KanKryssrefereres
+
+end
+
+class KryssreferanseKlasse Kryssreferanse
+	Klasse fra 1 1
+	Klasse til 1 1
+
+end
+
+class KryssreferanseMappeRegistrering Kryssreferanse
+	KanKryssrefereres fra 1 1 
+	KanKryssrefereres til 1 1
+
 end
  
 class Merknad
-    xsd:string merknadstekst 1 1
-    xsd:string merknadstype 0 1
-    # changed to 0 1 like in xsd
-    xsd:string merknadsdato 1 1
-    xsd:string merknadRegistrertAv 1 1
+    	xsd:string merknadstekst 1 1
+    	xsd:string merknadstype 0 1
+        xsd:dateTime merknadsdato 1 1
+    	xsd:string merknadRegistrertAv 1 1
 end
 
 class Kassasjon
-    Kassasjonsvedtak kassasjonsvedtak 1 1
+    	Kassasjonsvedtak kassasjonsvedtak 1 1
 	xsd:string kassasjonshjemmel 0 1
-    xsd:string bevaringstid 1 1
-    xsd:dateTime kassasjonsdato 1 1
+    	xsd:integer bevaringstid 1 1
+    	xsd:date kassasjonsdato 1 1
 end
 
 class UtfoertKassasjon
@@ -672,32 +616,29 @@ end
 
 class Skjerming
 	xsd:string tilgangsrestriksjon 1 1 
-    xsd:string skjermingshjemmel 1 1
-    xsd:string skjermingMetadata 0 *
-    SkjermingDokument skjermingDokument 0 1
-    # changed to 0 1 like in xsd
-    xsd:string skjermingsvarighet 0 1
-    xsd:string skjermingOpphoererDato 0 1
+    	xsd:string skjermingshjemmel 1 1
+    	xsd:string skjermingMetadata 0 *
+    	SkjermingDokument skjermingDokument 0 1
+    	xsd:integer skjermingsvarighet 0 1
+    	xsd:date skjermingOpphoererDato 0 1
 end
 
 class Gradering
 	GraderingType graderingtype 1 1
-    xsd:dateTime graderingsdato 1 1
-    xsd:string gradertAv 1 1
-    xsd:dateTime nedgraderingsdato 0 1 
-    xsd:string nedgradertAv 0 1
+    	xsd:dateTime graderingsdato 1 1
+    	xsd:string gradertAv 1 1
+    	xsd:dateTime nedgraderingsdato 0 1 
+    	xsd:string nedgradertAv 0 1
 end
 
 class Presedens
-#indre kjerne
-	xsd:dateTime presedensDato 1 1
+	xsd:date presedensDato 1 1
 	xsd:dateTime opprettetDato 1 1
 	xsd:string opprettetAv 1 1
 	xsd:string tittel 1 1
 	xsd:string beskrivelse 0 1	
 	xsd:string presedensHjemmel 0 1
 	xsd:string rettskildefaktor 1 1
-	# changed to 1 1 lik ein xsd
 	xsd:dateTime presedensGodkjentDato 0 1
 	xsd:string presedensGodkjentAv 0 1
 	xsd:dateTime avsluttetDato 0 1
@@ -707,17 +648,7 @@ end
 
 class ElektroniskSignatur
 	xsd:string elektroniskSignaturSikkerhetsnivaa 1 1
-    ElektroniskSignaturVerifisert elektroniskSignaturVerifisert 1 1
-    xsd:dateTime verifisertDato 1 1
-    xsd:string verifisertAv 1 1
+    	ElektroniskSignaturVerifisert elektroniskSignaturVerifisert 1 1
+    	xsd:dateTime verifisertDato 1 1
+    	xsd:string verifisertAv 1 1
 end
-
-# change history?
-# Class Endringslogg
-# xsd:string endring 0 *
-# xsd:string referanseArkivenhet 1 1
-# xsd:string referanseMetadata 1 1
-# xsd:dateTime endretDato 1 1
-# xsd:string endretAv 1 1
-# xsd:string tidligereVerdi 1 1
-# xsd:string nyVerdi 1 1
